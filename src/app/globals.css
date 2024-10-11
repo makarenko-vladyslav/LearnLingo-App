@@ -2,26 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #fff;
+    --backgroundSection: #f8f8f8;
+    --text: #121417;
+    --primary: #f4c550;
+    --secondary: #fbe9ba;
+    --buttonHover: #ffdc86;
+    --green: #38cd3e;
+    --gray: #8a8a89;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --text: #ededed;
+    }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: 'Roboto', sans-serif;
+    color: var(--text);
+    background: var(--background);
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+
+    width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .custom-accent::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 80%;
+        background-color: var(--secondary);
+        border-radius: 0.75rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
+
+    .custom-border {
+        background-image: repeating-linear-gradient(
+                0deg,
+                #f4c550,
+                #f4c550 15.33px,
+                transparent 21px,
+                transparent 45px,
+                #f4c550 51px
+            ),
+            repeating-linear-gradient(90deg, #f4c550, #f4c550 15.33px, transparent 21px, transparent 45px, #f4c550 51px),
+            repeating-linear-gradient(
+                180deg,
+                #f4c550,
+                #f4c550 15.33px,
+                transparent 21px,
+                transparent 45px,
+                #f4c550 51px
+            ),
+            repeating-linear-gradient(
+                270deg,
+                #f4c550,
+                #f4c550 15.33px,
+                transparent 21px,
+                transparent 45px,
+                #f4c550 51px
+            );
+        background-size: 1.5px calc(100% + 51px), calc(100% + 51px) 1.5px, 1.5px calc(100% + 51px),
+            calc(100% + 51px) 1.5px;
+        background-position: 0 0, 0 0, 100% 0, 0 100%;
+        background-repeat: no-repeat;
+        animation: borderAnimation 1.5s infinite linear;
+    }
+
+    @keyframes borderAnimation {
+        from {
+            background-position: 0 0, -51px 0, 100% -51px, 0 100%;
+        }
+        to {
+            background-position: 0 -51px, 0 0, 100% 0, -51px 100%;
+        }
+    }
 }

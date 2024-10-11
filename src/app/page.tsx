@@ -1,19 +1,25 @@
+"use client";
+
+import LoginAndRegisterForm from "../components/LoginAndRegisterForm";
+import { Provider } from "react-redux";
+import { store } from "../redux/store";
+import Home from "../pages/Home";
+
 export default function Page() {
-  return (
-    <div className="">
-      <header className="">
-        <nav className="">
-            
-        </nav>
-      </header>
+    return (
+        <Provider store={store}>
+            <div className="">
+                <header className="">
+                    <nav className=""></nav>
+                </header>
 
-      <main className="">
+                <main className="container">
+                    {/* <LoginAndRegisterForm mode="register" />
+                    <LoginAndRegisterForm mode="login" /> */}
 
-      </main>
-
-      <footer className="">
-
-      </footer>
-    </div>
-  );
+                    <Home />
+                </main>
+            </div>
+        </Provider>
+    );
 }

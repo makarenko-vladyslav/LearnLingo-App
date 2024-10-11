@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+
 const roboto = localFont({
     src: [
         {
@@ -30,15 +31,14 @@ const roboto = localFont({
 
 export const metadata: Metadata = {
     title: "LearnLingo - Find Your Ideal Language Teacher",
-    description: "LearnLingo connects you with expert language teachers to help you achieve your language learning goals. Browse profiles, read reviews, and start learning today!",
+    description:
+        "LearnLingo connects you with expert language teachers to help you achieve your language learning goals. Browse profiles, read reviews, and start learning today!",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en">
-        <body className={`${roboto.variable} antialiased`}>
-            {children}
-        </body>
+                <body className={`${roboto.variable} antialiased`}>{children}</body>
         </html>
     );
 }
