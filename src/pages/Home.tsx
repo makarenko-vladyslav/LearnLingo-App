@@ -2,14 +2,14 @@ import Image from "next/image";
 
 export default function Home() {
     return (
-        <section className="relative">
-            <div className="container grid grid-cols-2 gap-6 mb-6">
-                <div className="bg-backgroundSection rounded-[30px] relative flex flex-col justify-center items-content pl-16 pr-[6.75rem] flex-1">
-                    <h1 className="w-[580px] text-5xl leading-[117%] tracking-[-0.02em] font-bold mb-8">
+        <section className="relative container">
+            <div className="grid grid-cols-[1fr_530px] gap-6 mb-6">
+                <div className="bg-backgroundSection rounded-[30px] relative flex flex-col justify-center items-content pl-16 pr-[6.75rem w-full">
+                    <h1 className="w-[580px] text-5xl leading-[117%] font-bold mb-8">
                         Unlock your potential with the best{" "}
                         <span className="relative z-[1] italic font-medium custom-accent">language</span> tutors
                     </h1>
-                    <p className="text-[16px] leading-[137%] tracking-[-0.02em] mb-16 w-[470px]">
+                    <p className="text-[16px] leading-[137%] mb-16 w-[470px]">
                         Embark on an Exciting Language Journey with Expert Language Tutors: Elevate your language
                         proficiency to new heights by connecting with highly qualified and experienced tutors.
                     </p>
@@ -20,19 +20,19 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="relative h-full w-fit flex-1 overflow-hidden">
+                <div className="relative w-[568px] h-[530px] flex-1 overflow-hidden">
                     <Image
                         src="/hero.png"
                         alt="Girl with laptop"
-                        width={720}
-                        height={600}
+                        width={568}
+                        height={530}
                         className="rounded-[30px]"
                         priority={true}
                     />
                 </div>
             </div>
 
-            <ul className="custom-border relative flex gap-[100px] justify-center tracking-[-0.02em] py-10">
+            <ul className="custom-border relative flex gap-[100px] justify-center py-10 w-full">
                 <li className="flex gap-4 justify-center items-center">
                     <p className="text-3xl font-bold leading-[114%]">32,000 +</p>{" "}
                     <p className="flex flex-col text-sm leading-[129%] ">
