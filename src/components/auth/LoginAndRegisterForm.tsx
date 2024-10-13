@@ -12,6 +12,7 @@ import InputField from "./InputField";
 
 interface LoginAndRegisterFormProps {
     mode: "login" | "register";
+    onRequestClose: () => void;
 }
 
 interface FormData {
@@ -20,7 +21,7 @@ interface FormData {
     name?: string;
 }
 
-const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode }) => {
+const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode, onRequestClose }) => {
     const {
         register,
         handleSubmit,
@@ -34,6 +35,7 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode }) => 
 
     const onSubmit = (data: FormData) => {
         handleAuth(mode, data, dispatch, router);
+        onRequestClose();
     };
 
     return (

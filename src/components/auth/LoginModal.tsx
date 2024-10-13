@@ -12,19 +12,19 @@ export default function LoginModal({ isOpen, onRequestClose, formMode }: LoginMo
     useEffect(() => {
         Modal.setAppElement("#__next");
 
-        const body = document.querySelector("body");
+        const main = document.querySelector("main");
 
-        if (body) {
+        if (main) {
             if (isOpen) {
-                body.style.overflow = "hidden";
+                main.style.overflow = "hidden";
             } else {
-                body.style.overflow = "";
+                main.style.overflow = "";
             }
         }
 
         return () => {
-            if (body) {
-                body.style.overflow = "";
+            if (main) {
+                main.style.overflow = "";
             }
         };
     }, [isOpen]);
@@ -60,7 +60,7 @@ export default function LoginModal({ isOpen, onRequestClose, formMode }: LoginMo
                 &times;
             </button>
 
-            <LoginAndRegisterForm mode={formMode ?? "login"} />
+            <LoginAndRegisterForm onRequestClose={onRequestClose} mode={formMode ?? "login"} />
         </Modal>
     );
 }

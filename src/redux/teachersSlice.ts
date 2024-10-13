@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "./store";
 
 interface Teacher {
     id: string;
@@ -29,15 +30,27 @@ const teachersSlice = createSlice({
         addTeacher: (state, action: PayloadAction<Teacher>) => {
             state.teachers.push(action.payload);
         },
-        addFavoriteTeacher: (state, action: PayloadAction<Teacher>) => {
-            state.favoriteTeachers.push(action.payload);
-        },
-        removeFavoriteTeacher: (state, action: PayloadAction<string>) => {
-            state.favoriteTeachers = state.favoriteTeachers.filter((teacher) => teacher.id !== action.payload);
+        toggleFavoriteTeacher: (state, action: PayloadAction<string>) => {
+            const teacherId = action.payload;
+            const isFavorite = state.favoriteTeachers.some((teacher) => teacher.id === teacherId);
+
+            if (isFavorite) {
+                state.favoriteTeachers = state.favoriteTeachers.filter((teacher) => teacher.id !== teacherId);
+            } else {
+                const teacher = state.teachers.find((teacher) => teacher.id === teacherId);
+                if (teacher) {
+                    state.favoriteTeachers.push(teacher);
+                }
+            }
         },
     },
 });
 
-export const { setTeachers, addTeacher, addFavoriteTeacher, removeFavoriteTeacher } = teachersSlice.actions;
+export const selectAllTeachers = (state: RootState) => state.teachers.teachers;
+export const selectFavoriteTeachers = (state: RootState) => state.teachers.favoriteTeachers;
+export const selectTeacherById = (state: RootState, teacherId: string) =>
+    state.teachers.teachers.find((teacher) => teacher.id === teacherId);
+
+export const { setTeachers, addTeacher, toggleFavoriteTeacher } = teachersSlice.actions;
 
 export default teachersSlice.reducer;

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Header from "../components/Header";
+
 import "./globals.css";
+import ClientProviders from "../components/ClientProviders";
 
 const roboto = localFont({
     src: [
@@ -34,13 +37,16 @@ export const metadata: Metadata = {
         "LearnLingo connects you with expert language teachers to help you achieve your language learning goals. Browse profiles, read reviews, and start learning today!",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
             <body
                 className={`${roboto.variable} antialiased`}
                 id="__next">
-                {children}
+                <ClientProviders>
+                    <Header />
+                    <main className="container">{children}</main>
+                </ClientProviders>
             </body>
         </html>
     );
