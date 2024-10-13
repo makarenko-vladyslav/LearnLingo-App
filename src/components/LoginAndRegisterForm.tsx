@@ -37,9 +37,7 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode }) => 
     };
 
     return (
-        <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="max-w-md mx-auto p-4 bg-white shadow-md rounded">
+        <form onSubmit={handleSubmit(onSubmit)}>
             {mode === "register" && (
                 <InputField<FormData>
                     id="name"
@@ -66,7 +64,7 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode }) => 
             />
             <button
                 type="submit"
-                className="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                className="w-full py-4 bg-primary text-text text-[18px] font-bold rounded-xl hover:bg-buttonHover transition-colors duration-200">
                 {mode === "register" ? "Register" : "Log In"}
             </button>
         </form>

@@ -14,7 +14,10 @@ const config: Config = {
 
                 primary: "var(--primary)",
                 secondary: "var(--secondary)",
+
                 text: "var(--text)",
+                text80: "var(--text80)",
+                text10: "var(--text10)",
 
                 green: "var(--green)",
                 gray: "var(--gray)",
@@ -23,6 +26,7 @@ const config: Config = {
             },
         },
     },
+
     plugins: [],
 };
 export default config;

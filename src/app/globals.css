@@ -11,7 +11,11 @@
 :root {
     --background: #fff;
     --backgroundSection: #f8f8f8;
+
     --text: #121417;
+    --text80: #121417bf;
+    --text10: #1214171e;
+
     --primary: #f4c550;
     --secondary: #fbe9ba;
     --buttonHover: #ffdc86;
@@ -41,12 +45,18 @@ h4,
 h5,
 h6 {
     letter-spacing: -0.02em;
+    cursor: default;
 }
 
 .container {
-    width: 1440px; 
     margin-left: auto;
     margin-right: auto;
+
+    @media screen and (min-width: 1440px) {
+        max-width: 1440px;
+        padding-left: 64px;
+        padding-right: 64px;
+    }
 }
 
 @layer utilities {
@@ -68,44 +78,27 @@ h6 {
     }
 
     .custom-border {
-        background-image: repeating-linear-gradient(
-                0deg,
-                #f4c550,
-                #f4c550 15.33px,
-                transparent 21px,
-                transparent 45px,
-                #f4c550 51px
-            ),
-            repeating-linear-gradient(90deg, #f4c550, #f4c550 15.33px, transparent 21px, transparent 45px, #f4c550 51px),
-            repeating-linear-gradient(
-                180deg,
-                #f4c550,
-                #f4c550 15.33px,
-                transparent 21px,
-                transparent 45px,
-                #f4c550 51px
-            ),
-            repeating-linear-gradient(
-                270deg,
-                #f4c550,
-                #f4c550 15.33px,
-                transparent 21px,
-                transparent 45px,
-                #f4c550 51px
-            );
-        background-size: 1.5px calc(100% + 51px), calc(100% + 51px) 1.5px, 1.5px calc(100% + 51px),
-            calc(100% + 51px) 1.5px;
-        background-position: 0 0, 0 0, 100% 0, 0 100%;
-        background-repeat: no-repeat;
-        animation: borderAnimation 1.5s infinite linear;
+        position: absolute;
+        pointer-events: none;
+
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        width: 99%;
+        height: 99%;
     }
 
-    @keyframes borderAnimation {
-        from {
-            background-position: 0 0, -51px 0, 100% -51px, 0 100%;
-        }
-        to {
-            background-position: 0 -51px, 0 0, 100% 0, -51px 100%;
-        }
+    .custom-border-rect {
+        fill: none;
+        stroke: var(--primary);
+        stroke-width: 2px;
+        stroke-dasharray: 15, 15;
+        stroke-linecap: butt;
+    }
+
+    .last-input-mb-10:last-of-type {
+        margin-bottom: 40px;
     }
 }

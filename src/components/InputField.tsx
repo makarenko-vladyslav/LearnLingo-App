@@ -18,19 +18,18 @@ const InputField = <T extends FieldValues>({
     error,
     isRequired = true,
 }: InputFieldProps<T>) => (
-    <div className="mb-4">
+    <div className="mb-[18px] last-input-mb-10">
         <label
             htmlFor={id}
-            className="block text-sm font-medium text-gray-700">
-            {label}
-        </label>
+            className="block text-sm font-medium text-gray-700"></label>
         <input
             type={type}
             id={id}
+            placeholder={label}
             {...register(id, { required: isRequired })}
-            className="mt-1 p-2 w-full border rounded"
+            className="p-2 w-full border border-text10 rounded-xl leading-[137%] placeholder:text-text px-[18px] py-4"
         />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-red-500 text-sm ml-3 mt-1.5">{error}</p>}
     </div>
 );
 
