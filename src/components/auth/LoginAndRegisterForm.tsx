@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../redux/store";
-import { authSchema } from "../validation/authSchema";
-import { handleAuth } from "../services/authService";
+import { AppDispatch } from "../../redux/store";
+import { authSchema } from "../../validation/authSchema";
+import { handleAuth } from "../../services/authService";
 import InputField from "./InputField";
 
 interface LoginAndRegisterFormProps {

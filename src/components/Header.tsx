@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FiLogIn } from "react-icons/fi";
-import LoginModal from "./LoginModal";
+import LoginModal from "./auth/LoginModal";
 
 export default function Header() {
     const [isModalOpen, setIsModalOpen] = useState(false);

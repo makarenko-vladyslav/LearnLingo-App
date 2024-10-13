@@ -1,5 +1,4 @@
-"use client";
-
+import { useEffect } from "react";
 import Modal from "react-modal";
 import LoginAndRegisterForm from "./LoginAndRegisterForm";
 
@@ -10,6 +9,26 @@ interface LoginModalProps {
 }
 
 export default function LoginModal({ isOpen, onRequestClose, formMode }: LoginModalProps) {
+    useEffect(() => {
+        Modal.setAppElement("#__next");
+
+        const body = document.querySelector("body");
+
+        if (body) {
+            if (isOpen) {
+                body.style.overflow = "hidden";
+            } else {
+                body.style.overflow = "";
+            }
+        }
+
+        return () => {
+            if (body) {
+                body.style.overflow = "";
+            }
+        };
+    }, [isOpen]);
+
     return (
         <Modal
             isOpen={isOpen}
@@ -22,7 +41,7 @@ export default function LoginModal({ isOpen, onRequestClose, formMode }: LoginMo
                     <h1 className="font-bold text-[2.5rem] mb-5 leading-[120%]">Log In</h1>
                     <p className="leading-[137%] mb-10 text-text80">
                         Welcome back! Please enter your credentials to access your account and continue your search for
-                        an teacher.
+                        a teacher.
                     </p>
                 </>
             ) : (
@@ -30,7 +49,7 @@ export default function LoginModal({ isOpen, onRequestClose, formMode }: LoginMo
                     <h1 className="font-bold text-[2.5rem] mb-5 leading-[120%]">Registration</h1>
                     <p className="leading-[137%] mb-10 text-text80">
                         Thank you for your interest in our platform! In order to register, we need some information.
-                        Please provide us with the following information
+                        Please provide us with the following information.
                     </p>
                 </>
             )}
