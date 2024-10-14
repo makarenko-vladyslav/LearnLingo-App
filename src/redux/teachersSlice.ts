@@ -7,7 +7,7 @@ interface Review {
     comment: string;
 }
 
-interface Teacher {
+export interface Teacher {
     id: string;
     name: string;
     surname: string;

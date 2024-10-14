@@ -16,7 +16,6 @@ interface FormData {
     name?: string;
 }
 
-// Реєстрація або логін користувача
 export const handleAuth = async (
     mode: "login" | "register",
     data: FormData,
@@ -38,7 +37,6 @@ export const handleAuth = async (
     }
 };
 
-// Логаут користувача
 export const handleLogout = async (dispatch: AppDispatch, router: ReturnType<typeof useRouter>) => {
     try {
         await signOut(auth);
@@ -49,7 +47,6 @@ export const handleLogout = async (dispatch: AppDispatch, router: ReturnType<typ
     }
 };
 
-// Підписка на зміну стану автентифікації
 export const subscribeToAuthState = (dispatch: AppDispatch) => {
     return onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -60,7 +57,6 @@ export const subscribeToAuthState = (dispatch: AppDispatch) => {
     });
 };
 
-// Функція для перевірки, чи користувач залогований
 export const isAuthenticated = (): boolean => {
     return !!auth.currentUser;
 };

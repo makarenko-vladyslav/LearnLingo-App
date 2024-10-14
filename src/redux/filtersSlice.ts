@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./store"; // Імпорт типу RootState
-import Teacher from "./teachersSlice";
+import { RootState } from "./store";
+import { Teacher } from "./teachersSlice";
 
-interface FiltersState {
+export interface FiltersState {
     language: string | null;
     priceRange: [number, number] | null;
     level: string | null;
