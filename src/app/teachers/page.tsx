@@ -1,8 +1,11 @@
+import TeacherList from "../../components/TeacherList";
+import Filter from "../../components/Filter";
+
 export default function Page() {
     return (
-        <section className="">
-            <h1 className="text-2xl font-bold my-4">Our Teachers</h1>
-            <p>Here you can find information about our teachers.</p>
+        <section className="bg-backgroundSection py-24 px-[7rem]">
+            <Filter />
+            <TeacherList />
         </section>
     );
 }
