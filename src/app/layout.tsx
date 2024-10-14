@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Header from "../components/Header";
-
 import "./globals.css";
 import ClientProviders from "../components/ClientProviders";
+import AuthStatusChecker from "../components/auth/AuthStatusChecker"; 
 
 const roboto = localFont({
     src: [
@@ -44,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 className={`${roboto.variable} antialiased`}
                 id="__next">
                 <ClientProviders>
+                    <AuthStatusChecker />
                     <Header />
                     <main className="container">{children}</main>
                 </ClientProviders>

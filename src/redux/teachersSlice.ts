@@ -1,13 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
+interface Review {
+    reviewer_name: string;
+    reviewer_rating: number;
+    comment: string;
+}
+
 interface Teacher {
     id: string;
     name: string;
     surname: string;
     languages: string[];
     rating: number;
-    pricePerHour: number;
+    price_per_hour: number;
+    lessons_done: number;
+    avatar_url: string;
+    lesson_info: string;
+    conditions: string[];
+    experience: string;
+    reviews: Review[];
+    levels: string[];
 }
 
 interface TeachersState {

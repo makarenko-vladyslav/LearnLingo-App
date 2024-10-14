@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
     user: null | { email: string };
@@ -10,20 +9,6 @@ const initialState: AuthState = {
     user: null,
     isAuthenticated: false,
 };
-
-export const checkAuthStatus = createAsyncThunk("auth/checkAuthStatus", async (_, { dispatch }) => {
-    const auth = getAuth();
-    return new Promise<void>((resolve) => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                dispatch(setUser({ email: user.email! }));
-            } else {
-                dispatch(clearUser());
-            }
-            resolve();
-        });
-    });
-});
 
 const authSlice = createSlice({
     name: "auth",
@@ -38,9 +23,6 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
         },
     },
-    // extraReducers: (builder) => {
-    //     builder.addCase(checkAuthStatus.fulfilled, (state) => {});
-    // },
 });
 
 export const { setUser, clearUser } = authSlice.actions;

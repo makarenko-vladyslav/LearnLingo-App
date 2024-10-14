@@ -1,5 +1,11 @@
 import { auth } from "../../firebaseConfig";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile,
+    signOut,
+    onAuthStateChanged,
+} from "firebase/auth";
 import { setUser, clearUser } from "../redux/authSlice";
 import { AppDispatch } from "../redux/store";
 import { useRouter } from "next/navigation";
@@ -10,6 +16,7 @@ interface FormData {
     name?: string;
 }
 
+// Реєстрація або логін користувача
 export const handleAuth = async (
     mode: "login" | "register",
     data: FormData,
@@ -31,13 +38,29 @@ export const handleAuth = async (
     }
 };
 
+// Логаут користувача
 export const handleLogout = async (dispatch: AppDispatch, router: ReturnType<typeof useRouter>) => {
     try {
         await signOut(auth);
         dispatch(clearUser());
-
         router.push("/");
     } catch (error) {
         console.error("Logout error:", error);
     }
+};
+
+// Підписка на зміну стану автентифікації
+export const subscribeToAuthState = (dispatch: AppDispatch) => {
+    return onAuthStateChanged(auth, (user) => {
+        if (user) {
+            dispatch(setUser({ email: user.email! }));
+        } else {
+            dispatch(clearUser());
+        }
+    });
+};
+
+// Функція для перевірки, чи користувач залогований
+export const isAuthenticated = (): boolean => {
+    return !!auth.currentUser;
 };
