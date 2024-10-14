@@ -18,9 +18,10 @@ const config: Config = {
                 text: "var(--text)",
                 text80: "var(--text80)",
                 text10: "var(--text10)",
+                text20: "var(--text20)",
 
                 green: "var(--green)",
-                gray: "var(--gray)",
+                textGray: "var(--textGray)",
 
                 buttonHover: "var(--buttonHover)",
             },

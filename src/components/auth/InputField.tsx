@@ -29,7 +29,7 @@ const InputField = <T extends FieldValues>({
         <div className="mb-[18px] last-input-mb-10 relative">
             <label
                 htmlFor={id}
-                className="block text-sm font-medium text-gray-700"></label>
+                className="block text-sm font-medium text-textGray"></label>
             <input
                 type={type === "password" && showPassword ? "text" : type}
                 id={id}
@@ -41,7 +41,7 @@ const InputField = <T extends FieldValues>({
                 <button
                     type="button"
                     onClick={handleTogglePasswordVisibility}
-                    className="absolute inset-y-0 right-3 flex items-center text-gray-500">
+                    className="absolute inset-y-0 right-3 flex items-center text-textGray">
                     <span className="text-xl">{showPassword ? <FiEye /> : <FiEyeOff />}</span>
                 </button>
             )}

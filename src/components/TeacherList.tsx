@@ -16,9 +16,9 @@ const TeacherList: React.FC = () => {
     }, [filters, dispatch]);
 
     return teachers.length > 0 ? (
-        <ul>
+        <ul >
             {teachers.map((teacher, index) => (
-                <li key={index}>
+                <li key={index} className="mb-2 border">
                     <h3>
                         {teacher.name} {teacher.surname}
                     </h3>

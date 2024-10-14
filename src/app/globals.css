@@ -15,12 +15,13 @@
     --text: #121417;
     --text80: #121417bf;
     --text10: #1214171e;
+    --text20: #12141738;
 
     --primary: #f4c550;
     --secondary: #fbe9ba;
     --buttonHover: #ffdc86;
     --green: #38cd3e;
-    --gray: #8a8a89;
+    --textGray: #8a8a89;
 }
 
 @media (prefers-color-scheme: dark) {

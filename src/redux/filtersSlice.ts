@@ -4,20 +4,20 @@ import { Teacher } from "./teachersSlice";
 
 export interface FiltersState {
     language: string | null;
-    priceRange: [number, number] | null;
+    maxPrice: number | null;
     level: string | null;
     availableLanguages: string[];
     availableLevels: string[];
-    availablePriceRange: [number, number];
+    availablePriceOptions: number[];
 }
 
 const initialState: FiltersState = {
     language: null,
-    priceRange: null,
+    maxPrice: null,
     level: null,
     availableLanguages: [],
     availableLevels: [],
-    availablePriceRange: [0, 500],
+    availablePriceOptions: [],
 };
 
 const filtersSlice = createSlice({
@@ -27,8 +27,8 @@ const filtersSlice = createSlice({
         setLanguageFilter: (state, action: PayloadAction<string | null>) => {
             state.language = action.payload;
         },
-        setPriceRangeFilter: (state, action: PayloadAction<[number, number] | null>) => {
-            state.priceRange = action.payload;
+        setPriceFilter: (state, action: PayloadAction<number | null>) => {
+            state.maxPrice = action.payload;
         },
         setLevelFilter: (state, action: PayloadAction<string | null>) => {
             state.level = action.payload;
@@ -36,31 +36,38 @@ const filtersSlice = createSlice({
         setAvailableFilters: (state, action: PayloadAction<Teacher[]>) => {
             const uniqueLanguages = new Set<string>();
             const uniqueLevels = new Set<string>();
-            let minPrice = Infinity;
             let maxPrice = 0;
 
             action.payload.forEach((teacher) => {
                 teacher.languages.forEach((language) => uniqueLanguages.add(language));
                 teacher.levels.forEach((level) => uniqueLevels.add(level));
-                if (teacher.price_per_hour < minPrice) minPrice = teacher.price_per_hour;
                 if (teacher.price_per_hour > maxPrice) maxPrice = teacher.price_per_hour;
             });
 
+            const roundedMaxPrice = Math.ceil(maxPrice / 10) * 10;
+            const priceOptions = [];
+
+            for (let price = 10; price <= roundedMaxPrice; price += 10) {
+                priceOptions.push(price);
+            }
+
             state.availableLanguages = Array.from(uniqueLanguages);
             state.availableLevels = Array.from(uniqueLevels);
-            state.availablePriceRange = [minPrice, maxPrice];
+            state.availablePriceOptions = priceOptions;
         },
         clearFilters: (state) => {
             state.language = null;
-            state.priceRange = null;
+            state.maxPrice = null;
             state.level = null;
         },
     },
 });
 
-export const selectAvailablePriceRange = (state: RootState) => state.filters.availablePriceRange;
+export const selectAvailableLanguages = (state: RootState) => state.filters.availableLanguages;
+export const selectAvailableLevels = (state: RootState) => state.filters.availableLevels;
+export const selectAvailablePriceOptions = (state: RootState) => state.filters.availablePriceOptions;
 
-export const { setLanguageFilter, setPriceRangeFilter, setLevelFilter, setAvailableFilters, clearFilters } =
+export const { setLanguageFilter, setPriceFilter, setLevelFilter, setAvailableFilters, clearFilters } =
     filtersSlice.actions;
 
 export default filtersSlice.reducer;
