@@ -1,5 +1,5 @@
 import TeacherList from "../../components/TeacherList";
-import Filter from "../../components/Filter";
+import Filter from "../../components/Filters/Filter";
 
 export default function Page() {
     return (
