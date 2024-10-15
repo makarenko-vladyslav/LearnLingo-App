@@ -6,6 +6,10 @@ import { RootState } from "../redux/store";
 import { fetchTeachersWithFilters } from "../services/filterService";
 import { selectAllTeachers } from "../redux/teachersSlice";
 
+import { FaUserSlash } from "react-icons/fa";
+
+import TeacherItem from "./TeacherCard";
+
 const TeacherList: React.FC = () => {
     const dispatch = useDispatch();
     const teachers = useSelector(selectAllTeachers);
@@ -16,20 +20,22 @@ const TeacherList: React.FC = () => {
     }, [filters, dispatch]);
 
     return teachers.length > 0 ? (
-        <ul >
-            {teachers.map((teacher, index) => (
-                <li key={index} className="mb-2 border">
-                    <h3>
-                        {teacher.name} {teacher.surname}
-                    </h3>
-                    <p>Languages: {teacher.languages.join(", ")}</p>
-                    <p>Price per hour: ${teacher.price_per_hour}</p>
-                    <p>Rating: {teacher.rating}</p>
-                </li>
+        <ul className="flex flex-col gap-8">
+            {teachers.map((teacher) => (
+                <TeacherItem
+                    teacher={teacher}
+                    key={teacher.id}
+                />
             ))}
         </ul>
     ) : (
-        <p>No teachers available.</p>
+        <div className="flex flex-col items-center justify-center p-8 rounded-3xl shadow-sm bg-background text-center">
+            <FaUserSlash className="text-textGray text-6xl mb-4" />
+            <h2 className="text-xl font-semibold text-gray-600 mb-2">No teachers available</h2>
+            <p className="text-textGray">
+                Sorry, we couldn't find any teachers at the moment. Please try again later or adjust your filters.
+            </p>
+        </div>
     );
 };
 

@@ -55,8 +55,6 @@ h6 {
 
     @media screen and (min-width: 1440px) {
         max-width: 1440px;
-        padding-left: 64px;
-        padding-right: 64px;
     }
 }
 
@@ -101,5 +99,31 @@ h6 {
 
     .last-input-mb-10:last-of-type {
         margin-bottom: 40px;
+    }
+
+    .online::after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        right: 21px;
+        width: 10px;
+        height: 10px;
+        background-color: var(--green);
+        border-radius: 100%;
+        border: 2px solid var(--background);
+    }
+
+    .verticalElement:not(:last-child):after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 1rem;
+        background-color: var(--text20);
+
+        top: 0;
+        right: 0;
+        transform: translate(1rem, 25%);
+
+        z-index: 10;
     }
 }

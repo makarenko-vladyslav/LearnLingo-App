@@ -8,7 +8,7 @@ interface LanguageFilterProps {
 }
 
 const LanguageFilter: React.FC<LanguageFilterProps> = ({ selectedLanguage, availableLanguages, onChange }) => (
-    <div className="inline-flex flex-col gap-2 w-[220px]">
+    <div className="inline-flex flex-col gap-2 w-[225px] z-10">
         <label className="text-textGray text-sm font-medium leading-[129%]">Languages</label>
         <Listbox
             value={selectedLanguage}
@@ -19,7 +19,7 @@ const LanguageFilter: React.FC<LanguageFilterProps> = ({ selectedLanguage, avail
                         {selectedLanguage || "All Languages"}
                     </span>
                 </Listbox.Button>
-                <Listbox.Options className="absolute mt-1 w-full rounded-xl bg-white py-1 shadow-sm focus:outline-none text-[18px] leading-[111%] transition ease-out duration-200">
+                <Listbox.Options className="absolute mt-1 w-full rounded-xl bg-white py-1 shadow-md focus:outline-none text-[18px] leading-[111%] transition ease-out duration-200">
                     <Listbox.Option
                         className={({ active }) =>
                             `relative cursor-default select-none py-1 pl-[18px] pr-4 ${

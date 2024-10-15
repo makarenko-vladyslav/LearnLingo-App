@@ -37,10 +37,10 @@ export default function Header() {
     };
 
     return (
-        <header className="flex py-5 px-32 mx-auto max-w-[1440px]">
+        <header className="flex py-5 px-16 mx-auto max-w-[1440px] justify-between">
             <a
                 href="/"
-                className="flex justify-items-center items-center gap-2 mr-[390px] ">
+                className="flex justify-items-center items-center gap-2 ">
                 <Image
                     src="/logo.svg"
                     alt="Girl with laptop"
@@ -53,7 +53,7 @@ export default function Header() {
                 <p className="font-bold text-xl leading-[120%] cursor-pointer">LearnLingo</p>
             </a>
 
-            <nav className="mr-auto ">
+            <nav>
                 <ul className="leading-[125%] flex">
                     <li className="p-[14px]">
                         <Link
@@ -78,7 +78,7 @@ export default function Header() {
                         <FavoriteBtn />
 
                         <button
-                            className="bg-text text-background font-bold px-10 py-3.5 rounded-xl hover:text-text hover:bg-buttonHover transition-all duration-200 shadow-lg"
+                            className="ml-4 bg-text text-background font-bold px-10 py-3.5 rounded-xl hover:text-text hover:bg-buttonHover transition-all duration-200 shadow-lg"
                             onClick={handleOnLogout}>
                             Log out
                         </button>

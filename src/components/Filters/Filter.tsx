@@ -10,6 +10,7 @@ import {
     selectAvailablePriceOptions,
     selectAvailableLanguages,
     selectAvailableLevels,
+    selectLevel,
 } from "../../redux/filtersSlice";
 import { selectAllTeachers } from "../../redux/teachersSlice";
 
@@ -23,12 +24,17 @@ const Filter: React.FC = () => {
     const availablePriceOptions = useSelector(selectAvailablePriceOptions);
     const availableLanguages = useSelector(selectAvailableLanguages);
     const availableLevels = useSelector(selectAvailableLevels);
+    const selectedLevelFromRedux = useSelector(selectLevel);
 
     const [selectedLanguage, setSelectedLanguage] = useState<string>("");
-    const [selectedLevel, setSelectedLevel] = useState<string>("");
+    const [selectedLevel, setSelectedLevel] = useState<string>(selectedLevelFromRedux || "");
     const [selectedPrice, setSelectedPrice] = useState<number | null>(null);
 
     const filtersInitialized = useRef(false);
+
+    useEffect(() => {
+        setSelectedLevel(selectedLevelFromRedux || "");
+    }, [selectedLevelFromRedux]);
 
     useEffect(() => {
         if (teachers.length > 0 && !filtersInitialized.current) {

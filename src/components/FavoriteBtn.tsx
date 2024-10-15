@@ -25,18 +25,18 @@ export default function FavoriteBtn({ teacherId }: FavoriteBtnProps) {
 
     return (
         <button
-            className="flex justify-center items-center gap-2 px-2 py-3 font-bold hover:text-buttonHover transition-colors duration-200"
+            className="flex justify-center items-center gap-2 font-bold"
             onClick={handleClick}>
             {teacherId ? (
                 isFavorited ? (
-                    <FaHeart className="text-primary text-2xl" />
+                    <FaHeart className="text-buttonHover text-2xl hover:text-primary transition-colors duration-150" />
                 ) : (
-                    <FaRegHeart className="text-text text-2xl" />
+                    <FaRegHeart className="text-text text-2xl hover:text-buttonHover transition-colors duration-150" />
                 )
             ) : favoriteTeachers.length > 0 ? (
-                <FaHeart className="text-primary text-2xl mr-4" />
+                <FaHeart className="text-buttonHover text-2xl hover:text-primary transition-colors duration-150" />
             ) : (
-                <FaRegHeart className="text-black text-2xl mr-4" />
+                <FaRegHeart className="text-text text-2xl hover:text-buttonHover transition-colors duration-150" />
             )}
         </button>
     );

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
-interface Review {
+export interface Review {
     reviewer_name: string;
     reviewer_rating: number;
     comment: string;
