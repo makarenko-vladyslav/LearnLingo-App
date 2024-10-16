@@ -9,6 +9,7 @@ export const store = configureStore({
         teachers: teachersReducer,
         filters: filtersReducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
