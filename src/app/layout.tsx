@@ -3,27 +3,27 @@ import localFont from "next/font/local";
 import Header from "../components/Header";
 import "./globals.css";
 import ClientProviders from "../components/ClientProviders";
-import AuthStatusChecker from "../components/auth/AuthStatusChecker"; 
+import AuthStatusChecker from "../components/auth/AuthStatusChecker";
 
 const roboto = localFont({
     src: [
         {
-            path: "./fonts/Roboto-Regular.woff",
+            path: "./fonts/Roboto-Regular.woff2",
             style: "normal",
             weight: "400",
         },
         {
-            path: "./fonts/Roboto-Medium.woff",
+            path: "./fonts/Roboto-Medium.woff2",
             style: "normal",
             weight: "500",
         },
         {
-            path: "./fonts/Roboto-Bold.woff",
+            path: "./fonts/Roboto-Bold.woff2",
             style: "normal",
             weight: "700",
         },
         {
-            path: "./fonts/Roboto-Italic.woff",
+            path: "./fonts/Roboto-Italic.woff2",
             style: "italic",
             weight: "400",
         },
@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ClientProviders>
                     <AuthStatusChecker />
                     <Header />
-                    <main className="container">{children}</main>
+                    <main>{children}</main>
                 </ClientProviders>
             </body>
         </html>

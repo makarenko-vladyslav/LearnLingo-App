@@ -15,7 +15,7 @@ const LanguageFilter: React.FC<LanguageFilterProps> = ({ selectedLanguage, avail
             onChange={onChange}>
             <div className="relative mt-1">
                 <Listbox.Button className="relative w-full cursor-default rounded-xl bg-white py-[14px] px-[18px] text-left shadow-sm focus:outline-none text-[18px]">
-                    <span className="block truncate font-bold leading-[111%]">
+                    <span className="block truncate font-medium leading-[111%]">
                         {selectedLanguage || "All Languages"}
                     </span>
                 </Listbox.Button>
@@ -29,7 +29,7 @@ const LanguageFilter: React.FC<LanguageFilterProps> = ({ selectedLanguage, avail
                         value="">
                         {({ selected }) => (
                             <span
-                                className={`block truncate font-bold leading-[111%] hover:text-primary transition-all duration-100 ${
+                                className={`block truncate font-medium leading-[111%] hover:text-primary transition-all duration-100 ${
                                     selected ? "text-text" : "text-textGray"
                                 }`}>
                                 All Languages
@@ -47,7 +47,7 @@ const LanguageFilter: React.FC<LanguageFilterProps> = ({ selectedLanguage, avail
                             value={language}>
                             {({ selected }) => (
                                 <span
-                                    className={`block truncate font-bold hover:text-primary transition-all duration-100 ${
+                                    className={`block truncate font-medium hover:text-primary transition-all duration-100 ${
                                         selected ? "text-text" : "text-textGray"
                                     }`}>
                                     {language}

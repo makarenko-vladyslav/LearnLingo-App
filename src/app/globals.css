@@ -34,7 +34,9 @@
 body {
     color: var(--text);
     background: var(--background);
-    font-family: "Roboto", sans-serif;
+    font-family: var(--font-roboto), sans-serif;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 p,
@@ -50,9 +52,6 @@ h6 {
 }
 
 .container {
-    margin-left: auto;
-    margin-right: auto;
-
     @media screen and (min-width: 1440px) {
         max-width: 1440px;
     }
@@ -76,25 +75,20 @@ h6 {
         z-index: -1;
     }
 
-    .custom-border {
+    .custom-border::after {
+        content: "";
         position: absolute;
-        pointer-events: none;
 
-        top: 2px;
-        bottom: 2px;
-        left: 1px;
-        right: 1px;
+        background-image: url("/border.svg");
+        background-size: cover;
 
         width: 100%;
         height: 100%;
-    }
 
-    .custom-border-rect {
-        fill: none;
-        stroke: var(--primary);
-        stroke-width: 2px;
-        stroke-dasharray: 15, 15;
-        stroke-linecap: butt;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
     }
 
     .last-input-mb-10:last-of-type {

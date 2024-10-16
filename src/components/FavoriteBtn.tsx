@@ -1,23 +1,23 @@
 import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { selectFavoriteTeachers, toggleFavoriteTeacher } from "../redux/teachersSlice";
+import { selectFavoriteTeachers, Teacher, toggleFavoriteTeacher } from "../redux/teachersSlice";
 
-interface FavoriteBtnProps {
-    teacherId?: string;
+interface HaveYouATeacherForMe {
+    teacher?: Teacher;
 }
 
-export default function FavoriteBtn({ teacherId }: FavoriteBtnProps) {
+export default function FavoriteBtn({ teacher }: HaveYouATeacherForMe) {
     const dispatch = useDispatch();
     const router = useRouter();
 
     const favoriteTeachers = useSelector(selectFavoriteTeachers);
 
-    const isFavorited = teacherId ? favoriteTeachers.some((favTeacher) => favTeacher.id === teacherId) : false;
+    const isFavorited = teacher ? favoriteTeachers.some((favTeacher) => favTeacher.id === teacher.id) : false;
 
     const handleClick = () => {
-        if (teacherId) {
-            dispatch(toggleFavoriteTeacher(teacherId));
+        if (teacher) {
+            dispatch(toggleFavoriteTeacher(teacher));
         } else {
             router.push("/favorites");
         }
@@ -25,9 +25,9 @@ export default function FavoriteBtn({ teacherId }: FavoriteBtnProps) {
 
     return (
         <button
-            className="flex justify-center items-center gap-2 font-bold"
+            className="flex justify-center items-center gap-2 font-medium"
             onClick={handleClick}>
-            {teacherId ? (
+            {teacher ? (
                 isFavorited ? (
                     <FaHeart className="text-buttonHover text-2xl hover:text-primary transition-colors duration-150" />
                 ) : (

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
+import { addFavoriteTeacher, removeFavoriteTeacher } from "../services/favoritesService";
 
 export interface Review {
     reviewer_name: string;
@@ -43,17 +44,25 @@ const teachersSlice = createSlice({
         addTeacher: (state, action: PayloadAction<Teacher>) => {
             state.teachers.push(action.payload);
         },
-        toggleFavoriteTeacher: (state, action: PayloadAction<string>) => {
-            const teacherId = action.payload;
-            const isFavorite = state.favoriteTeachers.some((teacher) => teacher.id === teacherId);
+
+        setFavoriteTeachers: (state, action: PayloadAction<Teacher[]>) => {
+            state.favoriteTeachers = action.payload;
+        },
+
+        clearFavoriteTeachers: (state) => {
+            state.favoriteTeachers = [];
+        },
+
+        toggleFavoriteTeacher: (state, action: PayloadAction<Teacher>) => {
+            const teacher = action.payload;
+            const isFavorite = state.favoriteTeachers.some((favTeacher) => favTeacher.id === teacher.id);
 
             if (isFavorite) {
-                state.favoriteTeachers = state.favoriteTeachers.filter((teacher) => teacher.id !== teacherId);
+                state.favoriteTeachers = state.favoriteTeachers.filter((favTeacher) => favTeacher.id !== teacher.id);
+                removeFavoriteTeacher(teacher.id);
             } else {
-                const teacher = state.teachers.find((teacher) => teacher.id === teacherId);
-                if (teacher) {
-                    state.favoriteTeachers.push(teacher);
-                }
+                state.favoriteTeachers.push(teacher);
+                addFavoriteTeacher(teacher);
             }
         },
     },
@@ -64,6 +73,7 @@ export const selectFavoriteTeachers = (state: RootState) => state.teachers.favor
 export const selectTeacherById = (state: RootState, teacherId: string) =>
     state.teachers.teachers.find((teacher) => teacher.id === teacherId);
 
-export const { setTeachers, addTeacher, toggleFavoriteTeacher } = teachersSlice.actions;
+export const { setTeachers, addTeacher, toggleFavoriteTeacher, setFavoriteTeachers, clearFavoriteTeachers } =
+    teachersSlice.actions;
 
 export default teachersSlice.reducer;

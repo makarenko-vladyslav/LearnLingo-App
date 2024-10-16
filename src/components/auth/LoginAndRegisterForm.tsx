@@ -66,7 +66,7 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode, onReq
             />
             <button
                 type="submit"
-                className="w-full py-4 bg-primary text-text text-[18px] font-bold rounded-xl hover:bg-buttonHover transition-colors duration-200">
+                className="w-full py-4 bg-primary text-text text-[18px] font-medium rounded-xl hover:bg-buttonHover transition-colors duration-200">
                 {mode === "register" ? "Register" : "Log In"}
             </button>
         </form>

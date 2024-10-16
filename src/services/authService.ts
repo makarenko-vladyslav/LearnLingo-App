@@ -9,6 +9,7 @@ import {
 import { setUser, clearUser } from "../redux/authSlice";
 import { AppDispatch } from "../redux/store";
 import { useRouter } from "next/navigation";
+import { loadFavoriteTeachers } from "./favoritesService";
 
 interface FormData {
     email: string;
@@ -48,9 +49,15 @@ export const handleLogout = async (dispatch: AppDispatch, router: ReturnType<typ
 };
 
 export const subscribeToAuthState = (dispatch: AppDispatch) => {
-    return onAuthStateChanged(auth, (user) => {
+    return onAuthStateChanged(auth, async (user) => {
         if (user) {
             dispatch(setUser({ email: user.email! }));
+
+            try {
+                await loadFavoriteTeachers(dispatch);
+            } catch (error) {
+                console.error("Failed to load favorite teachers:", error);
+            }
         } else {
             dispatch(clearUser());
         }

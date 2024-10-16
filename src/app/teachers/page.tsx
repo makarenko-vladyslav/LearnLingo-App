@@ -3,7 +3,7 @@ import Filter from "../../components/Filters/Filter";
 
 export default function Page() {
     return (
-        <section className="bg-backgroundSection p-16 rounded-xl">
+        <section className="container px-32 py-16 bg-backgroundSection rounded-xl ">
             <Filter />
             <TeacherList />
         </section>

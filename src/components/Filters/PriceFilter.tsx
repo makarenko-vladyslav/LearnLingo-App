@@ -15,7 +15,7 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ selectedPrice, availablePrice
             onChange={onChange}>
             <div className="relative mt-1">
                 <Listbox.Button className="relative w-full cursor-default rounded-xl bg-white py-[14px] px-[18px] text-left shadow-m focus:outline-none text-[18px]">
-                    <span className="block truncate font-bold leading-[111%]">
+                    <span className="block truncate font-medium leading-[111%]">
                         {selectedPrice !== null ? `$${selectedPrice}` : "All Prices"}
                     </span>
                 </Listbox.Button>
@@ -29,7 +29,7 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ selectedPrice, availablePrice
                         value={null}>
                         {({ selected }) => (
                             <span
-                                className={`block truncate font-bold leading-[111%] hover:text-primary transition-all duration-100 ${
+                                className={`block truncate font-medium leading-[111%] hover:text-primary transition-all duration-100 ${
                                     selected ? "text-text" : "text-textGray"
                                 }`}>
                                 All Prices
@@ -47,7 +47,7 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ selectedPrice, availablePrice
                             value={price}>
                             {({ selected }) => (
                                 <span
-                                    className={`block truncate font-bold hover:text-primary transition-all duration-100 ${
+                                    className={`block truncate font-medium hover:text-primary transition-all duration-100 ${
                                         selected ? "text-text" : "text-textGray"
                                     }`}>
                                     ${price}

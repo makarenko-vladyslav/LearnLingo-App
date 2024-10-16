@@ -12,20 +12,14 @@ export default function LoginModal({ isOpen, onRequestClose, formMode }: LoginMo
     useEffect(() => {
         Modal.setAppElement("#__next");
 
-        const main = document.querySelector("main");
-
-        if (main) {
-            if (isOpen) {
-                main.style.overflow = "hidden";
-            } else {
-                main.style.overflow = "";
-            }
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
         }
 
         return () => {
-            if (main) {
-                main.style.overflow = "";
-            }
+            document.body.style.overflow = "auto";
         };
     }, [isOpen]);
 
@@ -33,12 +27,14 @@ export default function LoginModal({ isOpen, onRequestClose, formMode }: LoginMo
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
+            shouldCloseOnOverlayClick={true}
+            ariaHideApp={false}
             contentLabel="Login and Registration Modal"
             overlayClassName="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center"
             className="bg-white p-16 rounded-lg shadow-lg relative max-w-[556px] mx-auto">
             {formMode === "login" ? (
                 <>
-                    <h1 className="font-bold text-[2.5rem] mb-5 leading-[120%]">Log In</h1>
+                    <h1 className="font-med text-[2.5rem] mb-5 leading-[120%]">Log In</h1>
                     <p className="leading-[137%] mb-10 text-text80">
                         Welcome back! Please enter your credentials to access your account and continue your search for
                         a teacher.
@@ -46,7 +42,7 @@ export default function LoginModal({ isOpen, onRequestClose, formMode }: LoginMo
                 </>
             ) : (
                 <>
-                    <h1 className="font-bold text-[2.5rem] mb-5 leading-[120%]">Registration</h1>
+                    <h1 className="font-med text-[2.5rem] mb-5 leading-[120%]">Registration</h1>
                     <p className="leading-[137%] mb-10 text-text80">
                         Thank you for your interest in our platform! In order to register, we need some information.
                         Please provide us with the following information.
@@ -60,7 +56,10 @@ export default function LoginModal({ isOpen, onRequestClose, formMode }: LoginMo
                 &times;
             </button>
 
-            <LoginAndRegisterForm onRequestClose={onRequestClose} mode={formMode ?? "login"} />
+            <LoginAndRegisterForm
+                onRequestClose={onRequestClose}
+                mode={formMode ?? "login"}
+            />
         </Modal>
     );
 }

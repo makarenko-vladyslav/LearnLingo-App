@@ -8,7 +8,7 @@ export default function FavoritesPage() {
 
     return (
         <section className="container mx-auto">
-            <h1 className="text-2xl font-bold my-4">Favorites</h1>
+            <h1 className="text-2xl font-medium my-4">Favorites</h1>
 
             {favoriteTeachers.length === 0 ? (
                 <p>No favorite teachers yet.</p>

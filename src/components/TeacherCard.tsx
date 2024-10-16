@@ -24,7 +24,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
     };
 
     return (
-        <div className="flex gap-12 p-6 rounded-3xl shadow-sm bg-background relative">
+        <div className="flex gap-12 p-6 rounded-3xl shadow-sm bg-background relative font-medium">
             {/* Teacher photo */}
 
             <div className="w-[120px] h-[120px] shrink-0 relative border-2 rounded-full border-secondary p-2 online">
@@ -44,15 +44,15 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
             <div className="grow">
                 <div className="flex justify-between mb-8">
                     <div className="">
-                        <p className="text-textGray mb-2 leading-normal">Languages</p>
+                        <p className="text-textGray mb-2  leading-normal">Languages</p>
 
-                        <h2 className="text-2xl leading-none">
+                        <h2 className="text-2xl leading-none ">
                             {teacher.name} {teacher.surname}
                         </h2>
                     </div>
 
                     <div className="flex justify-center items-start">
-                        <ul className="flex gap-8 font-semibold mr-12">
+                        <ul className="flex gap-8  mr-12">
                             <li className="verticalElement relative flex items-center gap-2">
                                 <FiBookOpen />
                                 <p>Lessons online</p>
@@ -71,7 +71,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                             </li>
                         </ul>
 
-                        <FavoriteBtn teacherId={teacher.id} />
+                        <FavoriteBtn teacher={teacher} />
                     </div>
                 </div>
 
@@ -84,7 +84,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                             {teacher.languages.map((language, index) => (
                                 <span
                                     key={index}
-                                    className="text-text font-semibold underline">
+                                    className="text-text  underline">
                                     {language}
                                     {index + 1 < teacher.languages.length ? ", " : ""}
                                 </span>
@@ -94,12 +94,12 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
 
                     <li>
                         <p className="text-textGray">
-                            Lesson Info: <span className="text-text font-semibold">{teacher.lesson_info}</span>
+                            Lesson Info: <span className="text-text ">{teacher.lesson_info}</span>
                         </p>
                     </li>
                     <li>
                         <p className="text-textGray">
-                            Conditions: <span className="text-text font-semibold">{teacher.conditions}</span>
+                            Conditions: <span className="text-text ">{teacher.conditions}</span>
                         </p>
                     </li>
                 </ul>
@@ -107,7 +107,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                 {/* Button and hidden info */}
 
                 <button
-                    className={`mb-8 font-bold underline leading-normal hover:text-buttonHover transition-colors duration-200 ${
+                    className={`mb-8  underline leading-normal hover:text-buttonHover transition-colors duration-200 ${
                         isShown ? "hidden" : "visible"
                     }`}
                     onClick={() => setIsShown(true)}>
@@ -115,7 +115,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                 </button>
 
                 <div className={isShown ? "visible" : "hidden"}>
-                    <p className="mb-8">{teacher.experience}</p>
+                    <p className="mb-8 font-normal">{teacher.experience}</p>
 
                     {teacher.reviews.length > 0 ? (
                         <ul className="flex flex-col gap-8 mb-8">
@@ -124,13 +124,13 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                                     key={index}
                                     className="flex flex-col">
                                     <div className="flex gap-3">
-                                        <span className="w-12 h-12 rounded-full bg-secondary flex self-start justify-center items-center text-xl font-bold text-text">
+                                        <span className="w-12 h-12 rounded-full bg-secondary flex self-start justify-center items-center text-xl  text-text">
                                             {review.reviewer_name[0].toUpperCase()}
                                         </span>
 
                                         <div className="name_rating flex self-end">
                                             <div className="flex flex-col justify-center mb-4">
-                                                <p className="mb-0.5 text-textGray leading-normal">
+                                                <p className="mb-0.5 text-textGray  leading-normal">
                                                     {review.reviewer_name}
                                                 </p>
 
@@ -157,7 +157,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                     {teacher.levels.map((level, index) => (
                         <li
                             key={index}
-                            className={`font-semibold py-2 px-3 border border-text20 rounded-full transition-colors duration-300 ${
+                            className={` py-2 px-3 border border-text20 rounded-full transition-colors duration-300 ${
                                 level === selectedLevel && "bg-primary border-transparent"
                             }`}>
                             <button onClick={() => setLevel(level)}>#{level}</button>
@@ -168,7 +168,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                 {/* Booking button */}
 
                 <button
-                    className={`text-lg rounded-xl bg-primary font-bold py-4 px-12 hover:bg-buttonHover transition-colors duration-200 ${
+                    className={`text-lg rounded-xl bg-primary  py-4 px-12 hover:bg-buttonHover transition-colors duration-200 ${
                         isShown ? "visible" : "hidden"
                     } `}>
                     Book trial lesson

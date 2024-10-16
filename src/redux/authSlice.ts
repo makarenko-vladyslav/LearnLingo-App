@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { clearFavoriteTeachers } from "./teachersSlice";
 
 interface AuthState {
     user: null | { email: string };
@@ -21,6 +22,7 @@ const authSlice = createSlice({
         clearUser: (state) => {
             state.user = null;
             state.isAuthenticated = false;
+            clearFavoriteTeachers();
         },
     },
 });
