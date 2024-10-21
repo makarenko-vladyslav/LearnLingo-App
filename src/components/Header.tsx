@@ -1,27 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-
-import { FiLogIn } from "react-icons/fi";
-
-import { RootState } from "../redux/store";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFavoriteTeachers } from "../redux/teachersSlice";
+import { selectIsAuthenticated, selectAuthLoading } from "../redux/authSlice";
 import { handleLogout } from "../services/authService";
 
+import { FiLogIn } from "react-icons/fi";
 import LoginModal from "./auth/LoginModal";
 import FavoriteBtn from "./FavoriteBtn";
-import { setFavoriteTeachers } from "../redux/teachersSlice";
 
 export default function Header() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formMode, setFormMode] = useState<"login" | "register" | null>(null);
     const dispatch = useDispatch();
     const router = useRouter();
-    const user = useSelector((state: RootState) => state.auth.user);
+
+    const isAuthenticated = useSelector(selectIsAuthenticated);
+    const loading = useSelector(selectAuthLoading); 
 
     const handleOpenModal = (mode: "login" | "register"): void => {
         setFormMode(mode);
@@ -37,6 +36,10 @@ export default function Header() {
         handleLogout(dispatch, router);
         setFavoriteTeachers([]);
     };
+
+    if (loading) {
+        return null;
+    }
 
     return (
         <header className="container flex py-5 px-32 justify-between">
@@ -75,7 +78,7 @@ export default function Header() {
             </nav>
 
             <div className="flex">
-                {user ? (
+                {isAuthenticated ? (
                     <>
                         <FavoriteBtn />
 

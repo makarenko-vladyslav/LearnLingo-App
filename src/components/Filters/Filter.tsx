@@ -17,6 +17,7 @@ import { selectAllTeachers } from "../../redux/teachersSlice";
 import LanguageFilter from "./LanguageFilter";
 import LevelFilter from "./LevelFilter";
 import PriceFilter from "./PriceFilter";
+import { selectAuthLoading } from "../../redux/authSlice";
 
 const Filter: React.FC = () => {
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Filter: React.FC = () => {
     const availableLanguages = useSelector(selectAvailableLanguages);
     const availableLevels = useSelector(selectAvailableLevels);
     const selectedLevelFromRedux = useSelector(selectLevel);
+    const loading = useSelector(selectAuthLoading);
 
     const [selectedLanguage, setSelectedLanguage] = useState<string>("");
     const [selectedLevel, setSelectedLevel] = useState<string>(selectedLevelFromRedux || "");
@@ -42,6 +44,10 @@ const Filter: React.FC = () => {
             filtersInitialized.current = true;
         }
     }, [teachers, dispatch]);
+
+    if (loading) {
+        return null;
+    }
 
     return (
         <div className="flex gap-5 mb-8">

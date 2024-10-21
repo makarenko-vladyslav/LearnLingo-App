@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { auth } from "../../firebaseConfig";
 import {
     createUserWithEmailAndPassword,
@@ -7,11 +8,10 @@ import {
     onAuthStateChanged,
     sendPasswordResetEmail,
 } from "firebase/auth";
-import { setUser, clearUser, setAuthError } from "../redux/authSlice";
 import { AppDispatch } from "../redux/store";
-import { useRouter } from "next/navigation";
-import { loadFavoriteTeachers } from "./favoritesService";
+import { setUser, clearUser, setAuthError, setLoading } from "../redux/authSlice";
 import { clearFavoriteTeachers } from "../redux/teachersSlice";
+import { loadFavoriteTeachers } from "./favoritesService";
 
 interface FormData {
     email: string;
@@ -90,6 +90,8 @@ export const resetPassword = (email: string) => async (dispatch: AppDispatch) =>
 };
 
 export const subscribeToAuthState = (dispatch: AppDispatch) => {
+    dispatch(setLoading(true));
+
     return onAuthStateChanged(auth, async (user) => {
         if (user) {
             dispatch(setUser({ email: user.email! }));
@@ -102,6 +104,8 @@ export const subscribeToAuthState = (dispatch: AppDispatch) => {
         } else {
             dispatch(clearUser());
         }
+
+        dispatch(setLoading(false));
     });
 };
 

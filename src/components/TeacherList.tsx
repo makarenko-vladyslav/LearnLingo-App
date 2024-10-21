@@ -4,32 +4,32 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { fetchTeachersWithFilters } from "../services/filterService";
-import { selectAllTeachers } from "../redux/teachersSlice";
+import { Teacher } from "../redux/teachersSlice";
 import { FaUserSlash } from "react-icons/fa";
 import TeacherItem from "./TeacherCard";
 import Spinner from "./Spinner";
 
+interface TeacherListProps {
+    teachers: Teacher[];
+}
+
 const ITEMS_PER_LOAD = 4;
 
-const TeacherList: React.FC = () => {
+const TeacherList: React.FC<TeacherListProps> = ({ teachers }) => {
     const dispatch = useDispatch();
-    const teachers = useSelector(selectAllTeachers);
     const filters = useSelector((state: RootState) => state.filters);
 
-    const [initialLoading, setInitialLoading] = useState(true);
     const [visibleTeachers, setVisibleTeachers] = useState(ITEMS_PER_LOAD);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
-
-    const loadTeachers = async () => {
-        try {
-            setInitialLoading(true);
-            await fetchTeachersWithFilters(filters, dispatch);
-        } finally {
-            setInitialLoading(false);
-        }
-    };
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const loadTeachers = async () => {
+            setLoading(true);
+            await fetchTeachersWithFilters(filters, dispatch);
+            setLoading(false);
+        };
+
         loadTeachers();
     }, [filters, dispatch]);
 
@@ -41,7 +41,7 @@ const TeacherList: React.FC = () => {
         }, 1000);
     };
 
-    if (initialLoading) {
+    if (loading) {
         return (
             <div className="min-h-dvh flex justify-center items-center">
                 <Spinner color="#f4c550" />
@@ -73,6 +73,7 @@ const TeacherList: React.FC = () => {
                 ))}
             </ul>
 
+            {/* Кнопка "Load More" */}
             {visibleTeachers < teachers.length && (
                 <div className="flex justify-center mt-8">
                     <button
