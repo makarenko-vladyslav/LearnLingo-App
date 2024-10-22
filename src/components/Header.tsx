@@ -10,8 +10,9 @@ import { selectIsAuthenticated, selectAuthLoading } from "../redux/authSlice";
 import { handleLogout } from "../services/authService";
 
 import { FiLogIn } from "react-icons/fi";
-import LoginModal from "./auth/LoginModal";
 import FavoriteBtn from "./FavoriteBtn";
+import UniversalModal from "./Forms/UniversalModal";
+import LoginAndRegisterForm from "./Forms/LoginAndRegisterForm";
 
 export default function Header() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function Header() {
     const router = useRouter();
 
     const isAuthenticated = useSelector(selectIsAuthenticated);
-    const loading = useSelector(selectAuthLoading); 
+    const loading = useSelector(selectAuthLoading);
 
     const handleOpenModal = (mode: "login" | "register"): void => {
         setFormMode(mode);
@@ -105,11 +106,35 @@ export default function Header() {
                 )}
             </div>
 
-            <LoginModal
-                isOpen={isModalOpen}
-                onRequestClose={handleCloseModal}
-                formMode={formMode}
-            />
+            {formMode === "login" ? (
+                <UniversalModal
+                    isOpen={isModalOpen}
+                    onRequestClose={() => setIsModalOpen(false)}
+                    title="Log In"
+                    description="Welcome back! Please enter your credentials to access your account and continue your search for
+                        a teacher."
+                    content={
+                        <LoginAndRegisterForm
+                            onRequestClose={handleCloseModal}
+                            mode={formMode ?? "login"}
+                        />
+                    }
+                />
+            ) : (
+                <UniversalModal
+                    isOpen={isModalOpen}
+                    onRequestClose={() => setIsModalOpen(false)}
+                    title="Registration"
+                    description="Thank you for your interest in our platform! In order to register, we need some information.
+                        Please provide us with the following information."
+                    content={
+                        <LoginAndRegisterForm
+                            onRequestClose={handleCloseModal}
+                            mode={formMode ?? "login"}
+                        />
+                    }
+                />
+            )}
         </header>
     );
 }

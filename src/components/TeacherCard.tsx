@@ -8,6 +8,8 @@ import { FaStar } from "react-icons/fa6";
 
 import Image from "next/image";
 import FavoriteBtn from "./FavoriteBtn";
+import UniversalModal from "./Forms/UniversalModal";
+import TrialLessonForm from "./Forms/TrialLessonForm";
 
 interface TeacherCardProps {
     teacher: Teacher;
@@ -16,6 +18,7 @@ interface TeacherCardProps {
 const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
     const [isShown, setIsShown] = useState(false);
     const selectedLevel = useSelector(selectLevel);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -170,9 +173,23 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                 <button
                     className={`text-lg rounded-xl bg-primary  py-4 px-12 hover:bg-buttonHover transition-colors duration-200 ${
                         isShown ? "visible" : "hidden"
-                    } `}>
+                    }`}
+                    onClick={() => setIsModalOpen(true)}>
                     Book trial lesson
                 </button>
+
+                <UniversalModal
+                    isOpen={isModalOpen}
+                    onRequestClose={() => setIsModalOpen(false)}
+                    title="Book trial lesson"
+                    description="Our experienced tutor will assess your current language level, discuss your learning goals, and tailor the lesson to your specific needs."
+                    content={
+                        <TrialLessonForm
+                            onRequestClose={() => setIsModalOpen(false)}
+                            teacher={teacher}
+                        />
+                    }
+                />
             </div>
         </div>
     );

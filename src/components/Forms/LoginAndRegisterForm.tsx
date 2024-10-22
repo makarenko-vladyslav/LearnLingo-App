@@ -74,8 +74,6 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode, onReq
                 error={errors.email?.message}
             />
 
-            {mode === "login" && <PasswordReset email={email} />}
-
             <InputField<FormData>
                 id="password"
                 label="Password"
@@ -84,7 +82,9 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode, onReq
                 error={errors.password?.message}
             />
 
-            {authError && <p className="text-red-600 mb-4">{authError}</p>}
+            {authError && <p className="text-red-600">{authError}</p>}
+
+            {mode === "login" && <PasswordReset email={email} />}
 
             <button
                 type="submit"

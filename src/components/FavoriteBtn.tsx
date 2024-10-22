@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { selectFavoriteTeachers, Teacher, toggleFavoriteTeacher } from "../redux/teachersSlice";
 import { selectIsAuthenticated } from "../redux/authSlice";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 interface HaveYouATeacherForMe {
     teacher?: Teacher;
@@ -22,7 +21,7 @@ export default function FavoriteBtn({ teacher }: HaveYouATeacherForMe) {
         if (!isAuthenticated) {
             toast.warning("Please log in to save items to your favorites", {
                 position: "top-center",
-                autoClose: 3000,
+                autoClose: 4000,
             });
             return;
         }
@@ -51,7 +50,6 @@ export default function FavoriteBtn({ teacher }: HaveYouATeacherForMe) {
                     <FaRegHeart className="text-text text-2xl hover:text-buttonHover transition-colors duration-150" />
                 )}
             </button>
-            <ToastContainer />
         </>
     );
 }

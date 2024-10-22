@@ -3,7 +3,10 @@ import localFont from "next/font/local";
 import Header from "../components/Header";
 import "./globals.css";
 import ClientProviders from "../components/ClientProviders";
-import AuthStatusChecker from "../components/auth/AuthStatusChecker";
+import AuthStatusChecker from "../components/AuthStatusChecker";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const roboto = localFont({
     src: [
@@ -45,8 +48,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 id="__next">
                 <ClientProviders>
                     <AuthStatusChecker />
+
                     <Header />
                     <main>{children}</main>
+
+                    <ToastContainer />
                 </ClientProviders>
             </body>
         </html>

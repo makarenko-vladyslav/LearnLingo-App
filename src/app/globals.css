@@ -24,12 +24,12 @@
     --textGray: #8a8a89;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
         --background: #0a0a0a;
         --text: #ededed;
     }
-}
+} */
 
 body {
     color: var(--text);
@@ -119,5 +119,26 @@ h6 {
         transform: translate(1rem, 25%);
 
         z-index: 10;
+    }
+
+    /* Radio buttons */
+
+    .custom-radio::after {
+        content: "";
+        position: absolute;
+        cursor: pointer;
+        background-color: var(--primary);
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        top: 50%;
+        left: 0.75rem;
+        transform: translate(-50%, -50%);
+    }
+
+    input[type="radio"]:checked + .custom-radio::after {
+        opacity: 1;
     }
 }

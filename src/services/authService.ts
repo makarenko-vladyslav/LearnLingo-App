@@ -19,6 +19,14 @@ interface FormData {
     name?: string;
 }
 
+interface FirebaseAuthError extends Error {
+    code: string;
+}
+
+function isFirebaseAuthError(error: unknown): error is FirebaseAuthError {
+    return typeof error === "object" && error !== null && "code" in error;
+}
+
 export const handleAuth =
     (mode: "login" | "register", data: FormData, router: ReturnType<typeof useRouter>) =>
     async (dispatch: AppDispatch) => {
@@ -33,28 +41,29 @@ export const handleAuth =
             dispatch(setUser({ email: userCredential.user.email! }));
             dispatch(setAuthError(""));
             router.push("/teachers");
-        } catch (error: any) {
+        } catch (error) {
             let errorMessage = "An error occurred. Please try again.";
-            switch (error.code) {
-                case "auth/email-already-in-use":
-                    errorMessage = "This email is already in use.";
-                    break;
-                case "auth/invalid-credential":
-                    errorMessage = "Wrong password.";
-                    break;
-                case "auth/wrong-password":
-                    errorMessage = "Wrong password.";
-                    break;
-                case "auth/user-not-found":
-                    errorMessage = "User not registered.";
-                    break;
-                case "auth/too-many-requests":
-                    errorMessage =
-                        "Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or try again later.";
-                    break;
-                default:
-                    errorMessage = "An unknown error occurred.";
-                    break;
+
+            if (isFirebaseAuthError(error)) {
+                switch (error.code) {
+                    case "auth/email-already-in-use":
+                        errorMessage = "This email is already in use.";
+                        break;
+                    case "auth/invalid-credential":
+                    case "auth/wrong-password":
+                        errorMessage = "Invalid password.";
+                        break;
+                    case "auth/user-not-found":
+                        errorMessage = "User not registered.";
+                        break;
+                    case "auth/too-many-requests":
+                        errorMessage =
+                            "Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or try again later.";
+                        break;
+                    default:
+                        errorMessage = "An unknown error occurred.";
+                        break;
+                }
             }
             dispatch(setAuthError(errorMessage));
         }
@@ -67,7 +76,9 @@ export const handleLogout = async (dispatch: AppDispatch, router: ReturnType<typ
         dispatch(clearFavoriteTeachers());
         router.push("/");
     } catch (error) {
-        console.error("Logout error:", error);
+        if (error instanceof Error) {
+            console.error("Logout error:", error.message);
+        }
     }
 };
 
@@ -75,16 +86,20 @@ export const resetPassword = (email: string) => async (dispatch: AppDispatch) =>
     try {
         await sendPasswordResetEmail(auth, email);
         dispatch(setAuthError(""));
-    } catch (error: any) {
+    } catch (error) {
         let errorMessage = "Something went wrong. Please try again.";
-        switch (error.code) {
-            case "auth/invalid-email":
-                errorMessage = "Invalid email address.";
-                break;
-            case "auth/user-not-found":
-                errorMessage = "No user found with this email.";
-                break;
+
+        if (isFirebaseAuthError(error)) {
+            switch (error.code) {
+                case "auth/invalid-email":
+                    errorMessage = "Invalid email address.";
+                    break;
+                case "auth/user-not-found":
+                    errorMessage = "No user found with this email.";
+                    break;
+            }
         }
+
         dispatch(setAuthError(errorMessage));
     }
 };
