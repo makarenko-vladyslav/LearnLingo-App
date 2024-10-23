@@ -14,11 +14,11 @@ export default function FavoritesPage() {
 
     const favoriteTeachers = useSelector(selectFavoriteTeachers);
 
-    useEffect(() => {
-        if (!loading && !isAuthenticated) {
-            router.push("/");
-        }
-    }, [loading, isAuthenticated, router]);
+    // useEffect(() => {
+    //     if (!loading && !isAuthenticated) {
+    //         router.push("/");
+    //     }
+    // }, [loading, isAuthenticated, router]);
 
     return (
         <section className="container px-32 py-16 bg-backgroundSection rounded-xl min-h-screen">

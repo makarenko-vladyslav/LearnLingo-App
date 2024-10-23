@@ -1,36 +1,16 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import Header from "../components/Header";
-import "./globals.css";
-import ClientProviders from "../components/ClientProviders";
-import AuthStatusChecker from "../components/AuthStatusChecker";
-
+import { Roboto } from "next/font/google";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Header from "../components/Header";
+import ClientProviders from "../components/ClientProviders";
+import AuthStatusChecker from "../services/AuthStatusChecker";
 
-const roboto = localFont({
-    src: [
-        {
-            path: "./fonts/Roboto-Regular.woff2",
-            style: "normal",
-            weight: "400",
-        },
-        {
-            path: "./fonts/Roboto-Medium.woff2",
-            style: "normal",
-            weight: "500",
-        },
-        {
-            path: "./fonts/Roboto-Bold.woff2",
-            style: "normal",
-            weight: "700",
-        },
-        {
-            path: "./fonts/Roboto-Italic.woff2",
-            style: "italic",
-            weight: "400",
-        },
-    ],
+import "react-toastify/dist/ReactToastify.css";
+import "./globals.css";
+
+const roboto = Roboto({
+    subsets: ["latin"],
+    weight: ["400", "500", "700"],
     variable: "--font-roboto",
 });
 

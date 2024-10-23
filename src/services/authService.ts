@@ -7,11 +7,13 @@ import {
     signOut,
     onAuthStateChanged,
     sendPasswordResetEmail,
+    getIdToken,
 } from "firebase/auth";
 import { AppDispatch } from "../redux/store";
 import { setUser, clearUser, setAuthError, setLoading } from "../redux/authSlice";
 import { clearFavoriteTeachers } from "../redux/teachersSlice";
 import { loadFavoriteTeachers } from "./favoritesService";
+import Cookies from "js-cookie";
 
 interface FormData {
     email: string;
@@ -38,6 +40,10 @@ export const handleAuth =
             } else {
                 userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
             }
+
+            const token = await getIdToken(userCredential.user);
+            Cookies.set("authToken", token, { expires: 1 });
+
             dispatch(setUser({ email: userCredential.user.email! }));
             dispatch(setAuthError(""));
             router.push("/teachers");
@@ -74,6 +80,9 @@ export const handleLogout = async (dispatch: AppDispatch, router: ReturnType<typ
         await signOut(auth);
         dispatch(clearUser());
         dispatch(clearFavoriteTeachers());
+
+        Cookies.remove("authToken");
+
         router.push("/");
     } catch (error) {
         if (error instanceof Error) {
@@ -109,6 +118,9 @@ export const subscribeToAuthState = (dispatch: AppDispatch) => {
 
     return onAuthStateChanged(auth, async (user) => {
         if (user) {
+            const token = await getIdToken(user);
+            Cookies.set("authToken", token, { expires: 1 });
+
             dispatch(setUser({ email: user.email! }));
 
             try {
@@ -118,6 +130,7 @@ export const subscribeToAuthState = (dispatch: AppDispatch) => {
             }
         } else {
             dispatch(clearUser());
+            Cookies.remove("authToken");
         }
 
         dispatch(setLoading(false));
@@ -125,5 +138,6 @@ export const subscribeToAuthState = (dispatch: AppDispatch) => {
 };
 
 export const isAuthenticated = (): boolean => {
-    return !!auth.currentUser;
+    const token = Cookies.get("authToken");
+    return !!token;
 };

@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { subscribeToAuthState } from "../services/authService";
+import { subscribeToAuthState } from "./authService";
 import { AppDispatch } from "../redux/store";
 
 const AuthStatusChecker: React.FC = () => {

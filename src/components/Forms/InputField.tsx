@@ -26,25 +26,26 @@ const InputField = <T extends FieldValues>({
     };
 
     return (
-        <div className="mb-[18px] last-input-mb-10 relative">
+        <div className="mb-[18px] last-input-mb-10">
             <label
                 htmlFor={id}
-                className="block text-sm font-medium text-textGray"></label>
-            <input
-                type={type === "password" && showPassword ? "text" : type}
-                id={id}
-                placeholder={label}
-                {...register(id, { required: isRequired })}
-                className="p-2 w-full border border-text10 rounded-xl leading-[137%] placeholder:text-text px-[18px] py-4 pr-10"
-            />
-            {type === "password" && (
-                <button
-                    type="button"
-                    onClick={handleTogglePasswordVisibility}
-                    className="absolute inset-y-0 right-3 flex items-center text-textGray">
-                    <span className="text-xl">{showPassword ? <FiEye /> : <FiEyeOff />}</span>
-                </button>
-            )}
+                className="block text-sm font-medium text-textGray relative">
+                <input
+                    type={type === "password" && showPassword ? "text" : type}
+                    id={id}
+                    placeholder={label}
+                    {...register(id, { required: isRequired })}
+                    className="p-2 w-full border border-text10 rounded-xl leading-[137%] placeholder:text-text px-[18px] py-4 pr-10"
+                />
+                {type === "password" && (
+                    <button
+                        type="button"
+                        onClick={handleTogglePasswordVisibility}
+                        className="absolute -translate-y-1/2 top-1/2 right-3 flex items-center text-textGray">
+                        <span className="text-xl">{showPassword ? <FiEye /> : <FiEyeOff />}</span>
+                    </button>
+                )}
+            </label>
             {error && <p className="text-red-500 text-sm ml-3 mt-1.5">{error}</p>}
         </div>
     );

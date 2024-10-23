@@ -10,7 +10,7 @@ import { authSchema } from "../../validation/authSchema";
 import { handleAuth } from "../../services/authService";
 import InputField from "./InputField";
 import { selectAuthError, selectIsAuthenticated } from "../../redux/authSlice";
-import PasswordReset from "./PasswordReset";
+import PasswordReset from "../auth/PasswordReset";
 import Spinner from "../Spinner";
 
 interface LoginAndRegisterFormProps {
