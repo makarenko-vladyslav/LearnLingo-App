@@ -1,9 +1,20 @@
 import * as yup from "yup";
 
 export const authSchema = yup.object().shape({
+    name: yup
+        .string()
+        .required("Full name is required")
+        .min(2, "Name must be at least 2 characters")
+        .max(50, "Name cannot exceed 50 characters")
+        .matches(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces")
+        .when([], (_, schema) => schema.notRequired()),
     email: yup.string().email("Invalid email format").required("Email is required"),
-    password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
-    name: yup.string().when([], (_, schema) => schema.notRequired()),
+    password: yup
+        .string()
+        .min(6, "Password must be at least 6 characters")
+        .max(20, "Password cannot exceed 20 characters")
+        .required("Password is required")
+        .when([], (_, schema) => schema.notRequired()),
 });
 
 export const bookSchema = yup.object().shape({

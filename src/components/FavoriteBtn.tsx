@@ -19,7 +19,7 @@ export default function FavoriteBtn({ teacher }: HaveYouATeacherForMe) {
 
     const handleClick = () => {
         if (!isAuthenticated) {
-            toast.warning("Please log in to save items to your favorites", {
+            toast.warning("Please log in to save teacher to your favorites", {
                 position: "top-center",
                 autoClose: 4000,
             });

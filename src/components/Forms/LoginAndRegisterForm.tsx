@@ -10,7 +10,7 @@ import { authSchema } from "../../validation/authSchema";
 import { handleAuth } from "../../services/authService";
 import InputField from "./InputField";
 import { selectAuthError, selectIsAuthenticated } from "../../redux/authSlice";
-import PasswordReset from "../auth/PasswordReset";
+import PasswordReset from "../Auth/PasswordReset";
 import Spinner from "../Spinner";
 
 interface LoginAndRegisterFormProps {
@@ -19,9 +19,9 @@ interface LoginAndRegisterFormProps {
 }
 
 interface FormData {
+    name: string;
     email: string;
     password: string;
-    name?: string;
 }
 
 const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode, onRequestClose }) => {
@@ -63,7 +63,6 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode, onReq
                     type="text"
                     register={register}
                     error={errors.name?.message}
-                    isRequired={mode === "register"}
                 />
             )}
             <InputField<FormData>
