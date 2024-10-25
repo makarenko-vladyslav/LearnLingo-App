@@ -8,6 +8,9 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            screens: {
+                '2xl': '1440px', 
+            },
             colors: {
                 background: "var(--background)",
                 backgroundSection: "var(--backgroundSection)",
@@ -30,4 +33,5 @@ const config: Config = {
 
     plugins: [],
 };
+
 export default config;

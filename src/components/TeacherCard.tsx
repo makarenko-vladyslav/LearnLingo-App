@@ -8,7 +8,7 @@ import { FaStar } from "react-icons/fa6";
 
 import Image from "next/image";
 import FavoriteBtn from "./FavoriteBtn";
-import UniversalModal from "./Forms/UniversalModal";
+import UniversalModal from "./Forms/FormsModal";
 import TrialLessonForm from "./Forms/TrialLessonForm";
 
 interface TeacherCardProps {

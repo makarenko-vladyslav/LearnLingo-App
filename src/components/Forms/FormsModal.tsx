@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Modal from "react-modal";
 import { Teacher } from "../../redux/teachersSlice";
 
-interface UniversalModalProps {
+interface FormsModalProps {
     isOpen: boolean;
     onRequestClose: () => void;
     content: React.ReactNode;
@@ -11,7 +11,7 @@ interface UniversalModalProps {
     teacher?: Teacher;
 }
 
-export default function UniversalModal({ isOpen, onRequestClose, content, title, description }: UniversalModalProps) {
+export default function FormsModal({ isOpen, onRequestClose, content, title, description }: FormsModalProps) {
     useEffect(() => {
         Modal.setAppElement("#__next");
 
