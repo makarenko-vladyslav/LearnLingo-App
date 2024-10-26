@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { FieldValues, UseFormRegister, Path, ValidationRule } from "react-hook-form";
 import { FiEye, FiEyeOff } from "react-icons/fi";

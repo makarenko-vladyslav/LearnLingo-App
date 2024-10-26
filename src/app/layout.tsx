@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { ToastContainer } from "react-toastify";
-import Header from "../components/Header";
-import ClientProviders from "../components/ClientProviders";
+import Header from "../components/Header/Header";
+import ClientProviders from "../components/ClientProvider";
 import AuthStatusChecker from "../services/AuthStatusChecker";
 
 import "react-toastify/dist/ReactToastify.css";

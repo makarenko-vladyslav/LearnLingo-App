@@ -50,7 +50,16 @@ const Filter: React.FC = () => {
     }
 
     return (
-        <div className="flex gap-5 mb-8">
+        // <div className="grid grid-cols-1 sm:grid-cols-2 md:flex gap-5 mb-8">
+        <div className="flex flex-wrap gap-5 mb-8">
+            <PriceFilter
+                selectedPrice={selectedPrice}
+                availablePrices={availablePriceOptions}
+                onChange={(price) => {
+                    setSelectedPrice(price);
+                    dispatch(setPriceFilter(price));
+                }}
+            />
             <LanguageFilter
                 selectedLanguage={selectedLanguage}
                 availableLanguages={availableLanguages}
@@ -65,14 +74,6 @@ const Filter: React.FC = () => {
                 onChange={(level) => {
                     setSelectedLevel(level);
                     dispatch(setLevelFilter(level === "All Levels" ? null : level));
-                }}
-            />
-            <PriceFilter
-                selectedPrice={selectedPrice}
-                availablePrices={availablePriceOptions}
-                onChange={(price) => {
-                    setSelectedPrice(price);
-                    dispatch(setPriceFilter(price));
                 }}
             />
         </div>

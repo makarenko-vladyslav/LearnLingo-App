@@ -8,7 +8,7 @@ interface LevelFilterProps {
 }
 
 const LevelFilter: React.FC<LevelFilterProps> = ({ selectedLevel, availableLevels, onChange }) => (
-    <div className="inline-flex flex-col gap-2 w-[225px] z-10">
+    <div className="inline-flex flex-col gap-2 w-[225px]">
         <label className="text-textGray text-sm font-medium leading-[129%]">Level of knowledge</label>
         <Listbox
             value={selectedLevel}
@@ -17,7 +17,8 @@ const LevelFilter: React.FC<LevelFilterProps> = ({ selectedLevel, availableLevel
                 <Listbox.Button className="relative w-full cursor-default rounded-xl bg-white py-[14px] px-[18px] text-left shadow-sm focus:outline-none text-[18px]">
                     <span className="block truncate font-medium leading-[111%]">{selectedLevel || "All Levels"}</span>
                 </Listbox.Button>
-                <Listbox.Options className="absolute mt-1 w-full rounded-xl bg-white py-1 shadow-md focus:outline-none text-[18px] leading-[111%] transition ease-out duration-200">
+
+                <Listbox.Options className="absolute z-20 mt-1 w-full rounded-xl bg-white py-1 shadow-md focus:outline-none text-[18px] leading-[111%] transition ease-out duration-200">
                     <Listbox.Option
                         className={({ active }) =>
                             `relative cursor-default select-none py-1 pl-[18px] pr-4 ${
@@ -34,6 +35,7 @@ const LevelFilter: React.FC<LevelFilterProps> = ({ selectedLevel, availableLevel
                             </span>
                         )}
                     </Listbox.Option>
+
                     {availableLevels.map((level, index) => (
                         <Listbox.Option
                             key={index}

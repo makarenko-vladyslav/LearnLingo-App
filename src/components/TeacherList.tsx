@@ -6,7 +6,7 @@ import { RootState } from "../redux/store";
 import { fetchTeachersWithFilters } from "../services/filterService";
 import { Teacher } from "../redux/teachersSlice";
 import { FaUserSlash } from "react-icons/fa";
-import TeacherItem from "./TeacherCard";
+import TeacherCard from "./TeacherCard";
 import Spinner from "./Spinner";
 
 interface TeacherListProps {
@@ -64,9 +64,9 @@ const TeacherList: React.FC<TeacherListProps> = ({ teachers }) => {
 
     return (
         <div>
-            <ul className="flex flex-col gap-8">
+            <ul className="flex flex-col gap-3 lg:gap-8">
                 {teachers.slice(0, visibleTeachers).map((teacher) => (
-                    <TeacherItem
+                    <TeacherCard
                         teacher={teacher}
                         key={teacher.id}
                     />

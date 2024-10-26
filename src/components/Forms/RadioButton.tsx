@@ -1,3 +1,5 @@
+"use client";
+
 import { UseFormRegister, Path } from "react-hook-form";
 
 interface BookingFormData {

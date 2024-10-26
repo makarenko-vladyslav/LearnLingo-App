@@ -52,13 +52,7 @@ h6 {
 }
 
 .container {
-    border: 1px solid red;
-
     margin: 0 auto;
-
-    @media screen and (min-width: 1440px) {
-        max-width: 1440px;
-    }
 }
 
 @layer utilities {
@@ -146,5 +140,60 @@ h6 {
 
     input[type="radio"]:checked + .custom-radio::after {
         opacity: 1;
+    }
+
+    /* Burger button */
+
+    .burger {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+
+    .burger-line {
+        position: relative;
+        display: block;
+        cursor: pointer;
+
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        /* background-color: var(--textGray); */
+
+        transition: background-color 100ms linear;
+    }
+
+    .burger-line::after {
+        content: "";
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        transform: translateY(8px);
+
+        z-index: 10;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background-color: var(--textGray);
+
+        transition: transform 150ms linear;
+    }
+
+    .burger-line::before {
+        content: "";
+        position: absolute;
+
+        bottom: 0;
+        left: 0;
+        transform: translateY(-8px);
+
+        z-index: 10;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background-color: var(--textGray);
+
+        transition: transform 150ms linear;
     }
 }
