@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/-Redux-black?style=for-the-badge&logo=redux&logoColor=white&color=764ABC" alt="Redux" />
   </div>
 
-<h3 align="center">LearnLingo - Find Your Language Tutor</h3>
+<h2 align="center">LearnLingo - Find Your Language Tutor</h2>
 </div>
 
 ## 📋 Table of Contents
@@ -15,18 +15,17 @@
 1. 🤖 [Introduction](#introduction)
 2. ⚙️ [Tech Stack](#tech-stack)
 3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🗂 [Project Structure](#project-structure)
-6. 🕸️ [Environment Configuration](#environment-configuration)
-7. 🚀 [Performance](#performance)
+4. 🚀 [Performance](#performance)
+5. 🤸 [Quick Start](#quick-start)
+6. 🗂 [Project Structure](#project-structure)
 
-## 🤖 Introduction
+## <a name="introduction">🤖 Introduction</a>
 
 LearnLingo is an educational platform designed to connect language learners with tutors from around the world. With filtering options by language, level, and hourly price, users can easily find the ideal tutor. Authorized users can add tutors to their favorites list for easy access. LearnLingo also provides functionality for password resets and includes a trial lesson booking feature. Built with a clean, modern UI, the application offers seamless navigation, responsive design, and robust state management.
 
 **[Live Page](https://learn-lingo-app-nine.vercel.app/)** - Check out the working version of the project.
 
-## ⚙️ Tech Stack
+## <a name="tech-stack">⚙️ Tech Stack</a>
 
 -   **Next.js** - Full-stack React framework with built-in SSR and SSG capabilities.
 -   **TypeScript** - Typed JavaScript for enhanced development.
@@ -34,7 +33,7 @@ LearnLingo is an educational platform designed to connect language learners with
 -   **Redux Toolkit** - Efficient and organized state management.
 -   **Tailwind CSS** - Utility-first CSS for rapid styling and responsive design.
 
-## 🔋 Features
+## <a name="features">🔋 Features</a>
 
 -   **User Authentication**: Sign up, log in, session management, and password reset using Firebase Authentication.
 -   **Language Tutor Search and Filters**: Browse tutors by language, level, and hourly price.
@@ -43,7 +42,18 @@ LearnLingo is an educational platform designed to connect language learners with
 -   **Trial Lesson Booking**: Book a trial lesson with a tutor directly from the app.
 -   **Secure User Data**: Sensitive data stored safely using Firebase's real-time database.
 
-## 🤸 Quick Start
+## <a name="performance">🚀 Performance</a>
+
+LearnLingo is optimized for high performance, accessibility, best practices, and SEO. Below are the performance metrics from [PageSpeed Insights](https://pagespeed.web.dev/analysis/https-learn-lingo-app-nine-vercel-app/oubkfggr2h?hl=uk&form_factor=desktop):
+
+-   **Efficiency**: 100
+-   **Accessibility**: 100
+-   **Best Practices**: 100
+-   **SEO**: 100
+
+These scores reflect the app's efficient rendering, accessibility, and adherence to modern web standards.
+
+## <a name="quick-start">🤸 Quick Start</a>
 
 ### Prerequisites
 
@@ -90,7 +100,7 @@ Ensure you have the following installed:
 
 5. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## 🗂 Project Structure
+## <a name="project-structure">🗂 Project Structure</a>
 
 ```
 └── 📁src
@@ -146,14 +156,3 @@ Ensure you have the following installed:
     └── .DS_Store
     └── middleware.ts
 ```
-
-# 🚀 Performance
-
-LearnLingo is optimized for high performance, accessibility, best practices, and SEO. Below are the performance metrics from [PageSpeed Insights](https://pagespeed.web.dev/analysis/https-learn-lingo-app-nine-vercel-app/oubkfggr2h?hl=uk&form_factor=desktop):
-
--   **Efficiency**: 100
--   **Accessibility**: 100
--   **Best Practices**: 100
--   **SEO**: 100
-
-These scores reflect the app's efficient rendering, accessibility, and adherence to modern web standards.
