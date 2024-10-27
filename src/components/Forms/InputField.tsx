@@ -37,7 +37,7 @@ const InputField = <T extends FieldValues>({
                     id={id}
                     placeholder={label}
                     {...register(id, { required: isRequired })}
-                    className="p-2 w-full border border-text10 rounded-xl leading-[137%] placeholder:text-text px-[18px] py-4 pr-10"
+                    className="p-2 w-full border border-text10 rounded-xl leading-[137%] placeholder:text-textGray px-[18px] py-4 pr-10"
                 />
                 {type === "password" && (
                     <button

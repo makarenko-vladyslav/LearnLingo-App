@@ -14,11 +14,11 @@ const LevelFilter: React.FC<LevelFilterProps> = ({ selectedLevel, availableLevel
             value={selectedLevel}
             onChange={onChange}>
             <div className="relative mt-1">
-                <Listbox.Button className="relative w-full cursor-default rounded-xl bg-white py-[14px] px-[18px] text-left shadow-sm focus:outline-none text-[18px]">
+                <Listbox.Button className="relative w-full cursor-default rounded-xl bg-background py-[14px] px-[18px] text-left shadow-sm focus:outline-none text-[18px]">
                     <span className="block truncate font-medium leading-[111%]">{selectedLevel || "All Levels"}</span>
                 </Listbox.Button>
 
-                <Listbox.Options className="absolute z-20 mt-1 w-full rounded-xl bg-white py-1 shadow-md focus:outline-none text-[18px] leading-[111%] transition ease-out duration-200">
+                <Listbox.Options className="absolute z-20 mt-1 w-full rounded-xl bg-background py-1 shadow-md focus:outline-none text-[18px] leading-[111%] transition ease-out duration-200">
                     <Listbox.Option
                         className={({ active }) =>
                             `relative cursor-default select-none py-1 pl-[18px] pr-4 ${

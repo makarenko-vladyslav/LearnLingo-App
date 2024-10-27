@@ -113,7 +113,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                 {/* Button and hidden info */}
 
                 <button
-                    className={`mb-8  underline leading-normal hover:text-buttonHover transition-colors duration-200 ${
+                    className={`mb-8 underline leading-normal text-primary hover:text-buttonHover transition-colors duration-200 ${
                         isShown ? "hidden" : "visible"
                     }`}
                     onClick={() => setIsShown(true)}>
@@ -163,7 +163,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({ teacher }) => {
                     {teacher.levels.map((level, index) => (
                         <li
                             key={index}
-                            className={`py-2 px-3 border border-text20 rounded-full transition-colors duration-300 text-nowrap ${
+                            className={`py-2 px-3 border border-text20 rounded-full transition-all duration-300 text-nowrap hover:bg-buttonHover hover:shadow-md hover:border-transparent ${
                                 (level === selectedLevel || (!selectedLevel && index === 0)) &&
                                 "bg-primary border-transparent"
                             }`}>

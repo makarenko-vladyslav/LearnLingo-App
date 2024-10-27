@@ -78,9 +78,9 @@ const TeacherList: React.FC<TeacherListProps> = ({ teachers }) => {
                 <div className="flex justify-center mt-8">
                     <button
                         onClick={handleLoadMore}
-                        className="px-12 py-4 bg-primary text-text font-bold rounded-xl leading-[156%] hover:bg-buttonHover transition-all duration-200"
+                        className="px-12 py-4 min-w-48 bg-primary text-text font-bold rounded-xl leading-[156%] hover:bg-buttonHover transition-all duration-200"
                         disabled={isLoadingMore}>
-                        {isLoadingMore ? "Loading..." : "Load more"}
+                        {isLoadingMore ? <Spinner /> : "Load more"}
                     </button>
                 </div>
             )}

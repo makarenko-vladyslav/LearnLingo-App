@@ -50,7 +50,6 @@ const Filter: React.FC = () => {
     }
 
     return (
-        // <div className="grid grid-cols-1 sm:grid-cols-2 md:flex gap-5 mb-8">
         <div className="flex flex-wrap gap-5 mb-8">
             <PriceFilter
                 selectedPrice={selectedPrice}

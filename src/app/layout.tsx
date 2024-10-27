@@ -33,6 +33,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <main>{children}</main>
 
                     <ToastContainer />
+                    
+                    <div
+                        id="modal-overlay"
+                        aria-hidden="false"
+                        role="dialog"
+                    />
                 </ClientProviders>
             </body>
         </html>

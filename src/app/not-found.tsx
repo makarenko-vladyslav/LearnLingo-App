@@ -4,7 +4,7 @@ import React from "react";
 
 export default function NotFound() {
     return (
-        <div className="h-[100vh] bg-white flex flex-col items-center justify-center gap-4 px-5 lg:px-0">
+        <div className="h-[100vh] bg-background flex flex-col items-center justify-center gap-4 px-5 lg:px-0">
             <Image
                 src="/404.png"
                 width={150}
@@ -22,7 +22,7 @@ export default function NotFound() {
             </p>
 
             <Link
-                className="bg-buttonHover hover:bg-secondary text-text px-20 py-4 rounded-xl font-bold"
+                className="bg-buttonHover hover:bg-secondary text-text px-20 py-4 rounded-xl font-bold transition-colors duration-150"
                 href={"/"}>
                 Home Page
             </Link>

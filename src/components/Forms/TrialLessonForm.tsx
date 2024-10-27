@@ -64,9 +64,7 @@ export default function TrialLessonForm({ onRequestClose, teacher }: TrialLesson
                 </div>
             )}
 
-            <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="max-w-md mx-auto">
+            <form onSubmit={handleSubmit(onSubmit)}>
                 {/* Reason Radio Buttons */}
                 <div className="flex flex-col gap-4 mb-10 relative">
                     <h2 className="text-2xl font-medium leading-[133%] mb-1">

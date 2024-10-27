@@ -1,35 +1,35 @@
 "use client";
 
-import React, { useState } from "react";
-import Modal from "react-modal";
-
+import React from "react";
+import UniversalModal from "../Modal/UniversalModal";
 import NavLinks from "./NavLinks";
 import AuthButtons from "./AuthButtons";
 import FavoriteBtn from "../FavoriteBtn";
 
 interface BurgerProps {
     isAuthenticated: boolean;
+    isBurgerOpen: boolean;
     handleOpenModal: (mode: "login" | "register") => void;
     handleOnLogout: () => void;
+    closeBurger: () => void;
+    toggleBurger: () => void;
 }
 
-const Burger: React.FC<BurgerProps> = ({ isAuthenticated, handleOpenModal, handleOnLogout }) => {
-    const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-
-    const toggleBurger = () => {
-        setIsBurgerOpen(!isBurgerOpen);
-    };
-
-    const closeBurger = () => {
-        setIsBurgerOpen(false);
-    };
-
+const Burger: React.FC<BurgerProps> = ({
+    isAuthenticated,
+    isBurgerOpen,
+    handleOpenModal,
+    handleOnLogout,
+    closeBurger,
+    toggleBurger,
+}) => {
     return (
         <>
-            <div className="flex justify-center items-center gap-6 lg:hidden">
+            <div className="flex justify-center items-center gap-8 lg:hidden">
                 <FavoriteBtn />
+
                 <button
-                    className="burger z-10 "
+                    className="burger z-10"
                     type="button"
                     onClick={toggleBurger}>
                     <span
@@ -42,33 +42,28 @@ const Burger: React.FC<BurgerProps> = ({ isAuthenticated, handleOpenModal, handl
                 </button>
             </div>
 
-            <Modal
+            <UniversalModal
                 isOpen={isBurgerOpen}
-                onRequestClose={toggleBurger}
-                contentLabel="Navigation Menu"
-                overlayClassName="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center transition-opacity duration-500 ease-in-out"
-                className={`bg-backgroundSection px-6 py-10 rounded-lg w-80 max-w-full outline-none shadow-lg text-text transition-transform transform ${
-                    isBurgerOpen ? "translate-y-0" : "-translate-y-full"
-                }`}>
-                <button
-                    className="absolute top-3 right-4 text-3xl text-text"
-                    onClick={closeBurger}>
-                    &times;
-                </button>
-
-                <div className="flex flex-col gap-2">
-                    <NavLinks
-                        burger={true}
-                        onLinkClick={closeBurger}
-                    />
-                    <AuthButtons
-                        isAuthenticated={isAuthenticated}
-                        handleOpenModal={handleOpenModal}
-                        handleOnLogout={handleOnLogout}
-                        burger={true}
-                    />
-                </div>
-            </Modal>
+                onRequestClose={closeBurger}
+                isBurger={true}
+                content={
+                    <div className="flex flex-col gap-10">
+                        <NavLinks
+                            burger={true}
+                            onLinkClick={closeBurger}
+                        />
+                        <AuthButtons
+                            isAuthenticated={isAuthenticated}
+                            handleOpenModal={(mode) => {
+                                handleOpenModal(mode);
+                                closeBurger();
+                            }}
+                            handleOnLogout={handleOnLogout}
+                            burger={true}
+                        />
+                    </div>
+                }
+            />
         </>
     );
 };

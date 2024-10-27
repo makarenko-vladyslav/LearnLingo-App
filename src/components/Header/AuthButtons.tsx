@@ -14,7 +14,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
     handleOnLogout,
     burger = false,
 }) => (
-    <div className={`${burger ? "flex flex-col gap-4 mt-4" : "lg:flex hidden"}`}>
+    <div className={`${burger ? "flex flex-col gap-4" : "md:flex hidden"}`}>
         {isAuthenticated ? (
             <>
                 {!burger && <FavoriteBtn />}

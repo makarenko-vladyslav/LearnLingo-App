@@ -13,23 +13,42 @@
     --backgroundSection: #f8f8f8;
 
     --text: #121417;
-    --text80: #121417bf;
+    --textGray: #8a8a89;
     --text10: #1214171e;
     --text20: #12141738;
+    --text80: #121417bf;
 
     --primary: #f4c550;
     --secondary: #fbe9ba;
     --buttonHover: #ffdc86;
     --green: #38cd3e;
-    --textGray: #8a8a89;
 }
 
-/* @media (prefers-color-scheme: dark) {
+input {
+    outline: transparent;
+}
+
+input:focus {
+    outline: 2px solid var(--primary);
+}
+
+@media (prefers-color-scheme: dark) {
     :root {
-        --background: #0a0a0a;
-        --text: #ededed;
+        --background: #040b13;
+        --backgroundSection: #00070e;
+
+        --text: #e3e3e3;
+        --textGray: #b3b3b3;
+        --text10: #e3e3e31a;
+        --text20: #e3e3e333;
+        --text80: #e3e3e3cc;
+
+        --primary: #ff8c01;
+        --secondary: #ff8c01;
+        --buttonHover: #ff7700;
+        --green: #38cd3e;
     }
-} */
+}
 
 body {
     color: var(--text);
@@ -99,7 +118,7 @@ h6 {
         content: "";
         position: absolute;
         top: 15px;
-        right: 21px;
+        right: 15px;
         width: 10px;
         height: 10px;
         background-color: var(--green);
