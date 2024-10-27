@@ -66,6 +66,9 @@ export const handleAuth =
                         errorMessage =
                             "Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or try again later.";
                         break;
+                    case "auth/invalid-email":
+                        errorMessage = "Please enter a valid email address.";
+                        break;
                     default:
                         errorMessage = "An unknown error occurred.";
                         break;

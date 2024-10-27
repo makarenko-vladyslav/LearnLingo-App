@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export const authSchema = yup.object().shape({
     name: yup
         .string()
@@ -8,7 +10,7 @@ export const authSchema = yup.object().shape({
         .max(50, "Name cannot exceed 50 characters")
         .matches(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces")
         .when([], (_, schema) => schema.notRequired()),
-    email: yup.string().email("Invalid email format").required("Email is required"),
+    email: yup.string().matches(emailRegex, "Please enter a valid email address").required("Email is required"),
     password: yup
         .string()
         .min(6, "Password must be at least 6 characters")
@@ -25,7 +27,7 @@ export const bookSchema = yup.object().shape({
         .min(2, "Name must be at least 2 characters")
         .max(50, "Name cannot exceed 50 characters")
         .matches(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces"),
-    email: yup.string().email("Invalid email format").required("Email is required"),
+    email: yup.string().matches(emailRegex, "Please enter a valid email address").required("Email is required"),
     number: yup
         .string()
         .required("Phone number is required")

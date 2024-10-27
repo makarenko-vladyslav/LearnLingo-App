@@ -81,7 +81,7 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode, onReq
                 error={errors.password?.message}
             />
 
-            {authError && <p className="text-red-600">{authError}</p>}
+            {authError && <p className="text-red-600 text-xl text-center mb-8">{authError}</p>}
 
             {mode === "login" && <PasswordReset email={email} />}
 

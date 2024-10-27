@@ -39,6 +39,9 @@ const InputField = <T extends FieldValues>({
                     {...register(id, { required: isRequired })}
                     className="p-2 w-full border border-text10 rounded-xl leading-[137%] placeholder:text-textGray px-[18px] py-4 pr-10"
                 />
+
+                {error && <span className="text-red-500 text-sm ml-3 mt-1.5">{error}</span>}
+
                 {type === "password" && (
                     <button
                         type="button"
@@ -48,7 +51,6 @@ const InputField = <T extends FieldValues>({
                     </button>
                 )}
             </label>
-            {error && <p className="text-red-500 text-sm ml-3 mt-1.5">{error}</p>}
         </div>
     );
 };

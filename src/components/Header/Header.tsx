@@ -56,7 +56,7 @@ export default function Header() {
                 />
 
                 <div className="md:hidden flex items-center gap-8">
-                    <FavoriteBtn />
+                    {isAuthenticated && <FavoriteBtn />}
 
                     <button
                         className="burger z-10"
