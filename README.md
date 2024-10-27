@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/-Redux-black?style=for-the-badge&logo=redux&logoColor=white&color=764ABC" alt="Redux" />
   </div>
 
-<h2 align="center">LearnLingo - Find Your Language Tutor</h2>
+<h3 align="center">LearnLingo - Find Your Language Tutor</h2>
 </div>
 
 ## 📋 Table of Contents
