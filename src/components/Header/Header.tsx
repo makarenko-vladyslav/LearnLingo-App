@@ -12,6 +12,7 @@ import AuthButtons from "./AuthButtons";
 import UniversalModal from "../Modal/UniversalModal";
 import FavoriteBtn from "../FavoriteBtn";
 import LoginAndRegisterForm from "../Forms/LoginAndRegisterForm";
+import { ThemeSwitcher } from "../ThemeSwitcher";
 
 export default function Header() {
     const [formMode, setFormMode] = useState<"login" | "register" | null>(null);
@@ -55,8 +56,12 @@ export default function Header() {
                     handleOnLogout={handleOnLogout}
                 />
 
-                <div className="md:hidden flex items-center gap-8">
-                    {isAuthenticated && <FavoriteBtn />}
+                <div className="md:hidden flex items-center gap-6">
+                    <div className="flex justify-center items-center gap-3">
+                        <ThemeSwitcher />
+
+                        {isAuthenticated && <FavoriteBtn />}
+                    </div>
 
                     <button
                         className="burger z-10"

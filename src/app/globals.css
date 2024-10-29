@@ -24,30 +24,28 @@
     --green: #38cd3e;
 }
 
+.dark {
+    --background: #040b13;
+    --backgroundSection: #00070e;
+
+    --text: #e3e3e3;
+    --textGray: #b3b3b3;
+    --text10: #e3e3e31a;
+    --text20: #e3e3e333;
+    --text80: #e3e3e3cc;
+
+    --primary: #ff8c01;
+    --secondary: #ff8c01;
+    --buttonHover: #ff7700;
+    --green: #38cd3e;
+}
+
 input {
     outline: transparent;
 }
 
 input:focus {
     outline: 2px solid var(--primary);
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #040b13;
-        --backgroundSection: #00070e;
-
-        --text: #e3e3e3;
-        --textGray: #b3b3b3;
-        --text10: #e3e3e31a;
-        --text20: #e3e3e333;
-        --text80: #e3e3e3cc;
-
-        --primary: #ff8c01;
-        --secondary: #ff8c01;
-        --buttonHover: #ff7700;
-        --green: #38cd3e;
-    }
 }
 
 body {

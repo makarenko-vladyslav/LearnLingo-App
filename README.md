@@ -41,6 +41,7 @@ LearnLingo is an educational platform designed to connect language learners with
 -   **Responsive Design**: Fully optimized for mobile, tablet, and desktop views.
 -   **Trial Lesson Booking**: Book a trial lesson with a tutor directly from the app.
 -   **Secure User Data**: Sensitive data stored safely using Firebase's real-time database.
+-   **Dark Mode**: The app supports a dark theme that automatically switches based on the user’s device settings and can also be toggled manually.
 
 ## <a name="performance">🚀 Performance</a>
 

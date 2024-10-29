@@ -1,5 +1,6 @@
 import { FiLogIn } from "react-icons/fi";
 import FavoriteBtn from "../FavoriteBtn";
+import { ThemeSwitcher } from "../ThemeSwitcher";
 
 interface AuthButtonsProps {
     isAuthenticated: boolean;
@@ -17,7 +18,11 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
     <div className={`${burger ? "flex flex-col gap-4" : "md:flex hidden"}`}>
         {isAuthenticated ? (
             <>
-                {!burger && <FavoriteBtn />}
+                <div className="flex justify-center items-center gap-3">
+                    {!burger && <ThemeSwitcher />}
+
+                    {!burger && <FavoriteBtn />}
+                </div>
 
                 <button
                     onClick={handleOnLogout}
