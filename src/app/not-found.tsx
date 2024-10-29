@@ -4,7 +4,7 @@ import React from "react";
 
 export default function NotFound() {
     return (
-        <div className="h-[100vh] bg-background flex flex-col items-center justify-center gap-4 px-5 lg:px-0">
+        <section className="h-[100vh] bg-background flex flex-col items-center justify-center gap-4 px-5 lg:px-0">
             <Image
                 src="/404.png"
                 width={150}
@@ -26,6 +26,6 @@ export default function NotFound() {
                 href={"/"}>
                 Home Page
             </Link>
-        </div>
+        </section>
     );
 }

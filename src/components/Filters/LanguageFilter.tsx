@@ -8,7 +8,7 @@ interface LanguageFilterProps {
 }
 
 const LanguageFilter: React.FC<LanguageFilterProps> = ({ selectedLanguage, availableLanguages, onChange }) => (
-    <div className="inline-flex flex-col gap-2 w-[225px]">
+    <li className="inline-flex flex-col gap-2 w-[225px]">
         <label className="text-textGray text-sm font-medium leading-[129%]">Languages</label>
         <Listbox
             value={selectedLanguage}
@@ -60,7 +60,7 @@ const LanguageFilter: React.FC<LanguageFilterProps> = ({ selectedLanguage, avail
                 </Listbox.Options>
             </div>
         </Listbox>
-    </div>
+    </li>
 );
 
 export default LanguageFilter;

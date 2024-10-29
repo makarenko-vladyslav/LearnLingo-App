@@ -8,7 +8,7 @@ interface LevelFilterProps {
 }
 
 const LevelFilter: React.FC<LevelFilterProps> = ({ selectedLevel, availableLevels, onChange }) => (
-    <div className="inline-flex flex-col gap-2 w-[225px]">
+    <li className="inline-flex flex-col gap-2 w-[225px]">
         <label className="text-textGray text-sm font-medium leading-[129%]">Level of knowledge</label>
         <Listbox
             value={selectedLevel}
@@ -58,7 +58,7 @@ const LevelFilter: React.FC<LevelFilterProps> = ({ selectedLevel, availableLevel
                 </Listbox.Options>
             </div>
         </Listbox>
-    </div>
+    </li>
 );
 
 export default LevelFilter;

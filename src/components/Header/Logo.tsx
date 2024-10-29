@@ -14,7 +14,8 @@ export default function Logo() {
                 className="rounded-[30px]"
                 priority
             />
-            <p className="font-medium text-xl leading-[120%] cursor-pointer">LearnLingo</p>
+
+            <span className="font-medium text-xl leading-[120%] cursor-pointer hover:text-primary">LearnLingo</span>
         </Link>
     );
 }

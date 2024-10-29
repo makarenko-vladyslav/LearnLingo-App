@@ -8,7 +8,7 @@ interface PriceFilterProps {
 }
 
 const PriceFilter: React.FC<PriceFilterProps> = ({ selectedPrice, availablePrices, onChange }) => (
-    <div className="inline-flex flex-col gap-2 w-[115px] z-10">
+    <li className="inline-flex flex-col gap-2 w-[115px] z-10">
         <label className="text-textGray text-sm font-medium leading-[129%]">Price</label>
         <Listbox
             value={selectedPrice}
@@ -58,7 +58,7 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ selectedPrice, availablePrice
                 </Listbox.Options>
             </div>
         </Listbox>
-    </div>
+    </li>
 );
 
 export default PriceFilter;

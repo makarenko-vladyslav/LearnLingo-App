@@ -64,6 +64,7 @@ const filtersSlice = createSlice({
 });
 
 export const selectLevel = (state: RootState) => state.filters.level;
+export const selectFilters = (state: RootState) => state.filters;
 
 export const selectAvailableLanguages = (state: RootState) => state.filters.availableLanguages;
 export const selectAvailableLevels = (state: RootState) => state.filters.availableLevels;

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,7 +38,9 @@ export default function FavoriteBtn({ teacher }: HaveYouATeacherForMe) {
     return (
         <>
             <button
-                className={`flex justify-center items-center gap-2 font-medium ${teacher && "absolute top-4 right-4 lg:static"}`}
+                className={`flex justify-center items-center gap-2 p-2 font-medium ${
+                    teacher && "absolute top-4 right-4"
+                }`}
                 onClick={handleClick}>
                 {teacher ? (
                     isFavorited ? (

@@ -1,70 +1,69 @@
 "use client";
 
-import React from "react";
-import UniversalModal from "../Modal/UniversalModal";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsAuthenticated } from "../../redux/authSlice";
+import { handleLogout } from "../../services/authService";
+import UniversalModal from "../UniversalModal";
 import NavLinks from "./NavLinks";
 import AuthButtons from "./AuthButtons";
-import FavoriteBtn from "../FavoriteBtn";
 
 interface BurgerProps {
-    isAuthenticated: boolean;
-    isBurgerOpen: boolean;
     handleOpenModal: (mode: "login" | "register") => void;
-    handleOnLogout: () => void;
-    closeBurger: () => void;
-    toggleBurger: () => void;
 }
 
-const Burger: React.FC<BurgerProps> = ({
-    isAuthenticated,
-    isBurgerOpen,
-    handleOpenModal,
-    handleOnLogout,
-    closeBurger,
-    toggleBurger,
-}) => {
-    return (
-        <>
-            <div className="flex justify-center items-center gap-8 lg:hidden">
-                <FavoriteBtn />
+const Burger: React.FC<BurgerProps> = ({ handleOpenModal }) => {
+    const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const isAuthenticated = useSelector(selectIsAuthenticated);
 
-                <button
-                    className="burger z-10"
-                    type="button"
-                    onClick={toggleBurger}>
-                    <span
-                        className={`burger-line focus:outline-none bg-textGray ${
-                            isBurgerOpen
-                                ? "bg-transparent after:-rotate-45 after:translate-y-0 before:rotate-45 before:translate-y-0"
-                                : "bg-textGray"
-                        }`}
-                    />
-                </button>
-            </div>
+    const handleToggleBurger = () => {
+        setIsBurgerOpen(!isBurgerOpen);
+    };
+
+    const handleLogoutClick = () => {
+        handleLogout(dispatch, router);
+        setIsBurgerOpen(false);
+    };
+
+    return (
+        <div className="md:hidden flex justify-center items-center p-2">
+            <button
+                className="burger z-10"
+                onClick={handleToggleBurger}>
+                <span
+                    className={`burger-line focus:outline-none bg-textGray ${
+                        isBurgerOpen
+                            ? "bg-transparent after:-rotate-45 after:translate-y-0 before:rotate-45 before:translate-y-0"
+                            : "bg-textGray"
+                    }`}
+                />
+            </button>
 
             <UniversalModal
                 isOpen={isBurgerOpen}
-                onRequestClose={closeBurger}
-                isBurger={true}
+                onRequestClose={() => setIsBurgerOpen(false)}
                 content={
                     <div className="flex flex-col gap-10">
                         <NavLinks
                             burger={true}
-                            onLinkClick={closeBurger}
+                            onLinkClick={() => setIsBurgerOpen(false)}
                         />
                         <AuthButtons
                             isAuthenticated={isAuthenticated}
                             handleOpenModal={(mode) => {
                                 handleOpenModal(mode);
-                                closeBurger();
+                                setIsBurgerOpen(false);
                             }}
-                            handleOnLogout={handleOnLogout}
+                            handleOnLogout={handleLogoutClick}
                             burger={true}
                         />
                     </div>
                 }
             />
-        </>
+        </div>
     );
 };
 

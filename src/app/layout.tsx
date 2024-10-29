@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import { ToastContainer } from "react-toastify";
 import Header from "../components/Header/Header";
-import ClientProviders from "../components/ClientProvider";
-import AuthStatusChecker from "../services/AuthStatusChecker";
-import { ThemeProvider } from "next-themes";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import { Providers } from "../components/Providers";
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -27,19 +24,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body
                 className={`${roboto.variable} antialiased`}
                 id="__next">
-                <ClientProviders>
-                    <ThemeProvider attribute="class">
-                        <AuthStatusChecker />
-                        <Header />
-                        <main>{children}</main>
-                        <ToastContainer />
-                        <div
-                            id="modal-overlay"
-                            aria-hidden="false"
-                            role="dialog"
-                        />
-                    </ThemeProvider>
-                </ClientProviders>
+                <Providers>
+                    <Header />
+                    <main>{children}</main>
+                </Providers>
             </body>
         </html>
     );

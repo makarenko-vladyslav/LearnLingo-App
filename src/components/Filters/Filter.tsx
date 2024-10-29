@@ -50,7 +50,7 @@ const Filter: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-wrap gap-5 mb-8">
+        <ul className="flex self-start flex-wrap gap-5 mb-8">
             <PriceFilter
                 selectedPrice={selectedPrice}
                 availablePrices={availablePriceOptions}
@@ -75,7 +75,7 @@ const Filter: React.FC = () => {
                     dispatch(setLevelFilter(level === "All Levels" ? null : level));
                 }}
             />
-        </div>
+        </ul>
     );
 };
 
