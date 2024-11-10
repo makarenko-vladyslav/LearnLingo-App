@@ -7,17 +7,12 @@ import {
     setPriceFilter,
     setLevelFilter,
     setAvailableFilters,
-    selectAvailablePriceOptions,
-    selectAvailableLanguages,
-    selectAvailableLevels,
-    selectLevel,
-} from "../../redux/filtersSlice";
-import { selectAllTeachers } from "../../redux/teachersSlice";
+} from "../../redux/slices/filtersSlice";
 
 import LanguageFilter from "./LanguageFilter";
 import LevelFilter from "./LevelFilter";
 import PriceFilter from "./PriceFilter";
-import { selectAuthLoading } from "../../redux/authSlice";
+import { selectAllTeachers, selectAuthLoading, selectAvailableLanguages, selectAvailableLevels, selectAvailablePriceOptions, selectLevel } from "../../redux/selectors";
 
 const Filter: React.FC = () => {
     const dispatch = useDispatch();

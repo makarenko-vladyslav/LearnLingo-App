@@ -1,11 +1,9 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAuthenticated, selectAuthLoading } from "../../redux/authSlice";
-import { handleLogout } from "../../services/authService";
-
+import { clearAuthError } from "../../redux/slices/authSlice";
+import type { AppDispatch } from "../../redux/store";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import AuthButtons from "./AuthButtons";
@@ -14,30 +12,39 @@ import FavoriteBtn from "../FavoriteBtn";
 import LoginAndRegisterForm from "../Forms/LoginAndRegisterForm";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import Burger from "./Burger";
+import { handleLogout, subscribeToAuthState } from "../../redux/actions/authActions";
+import { selectAuthLoading, selectIsAuthenticated } from "../../redux/selectors";
 
 export default function Header() {
     const [formMode, setFormMode] = useState<"login" | "register" | null>(null);
-
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const dispatch = useDispatch();
-    const router = useRouter();
+    const dispatch = useDispatch<AppDispatch>();
 
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const loading = useSelector(selectAuthLoading);
 
+    useEffect(() => {
+        dispatch(subscribeToAuthState())
+            .unwrap()
+            .catch((error) => console.error("Error during auth state subscription:", error));
+    }, [dispatch]);
+
     const handleOpenModal = (mode: "login" | "register") => {
-        setFormMode(mode);
-        setIsModalOpen(true);
+        if (!isModalOpen) {
+            setFormMode(mode);
+            setIsModalOpen(true);
+        }
     };
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
         setFormMode(null);
+        dispatch(clearAuthError());
     };
 
     const handleOnLogout = () => {
-        handleLogout(dispatch, router);
+        dispatch(handleLogout());
     };
 
     if (loading) return null;
@@ -45,23 +52,17 @@ export default function Header() {
     return (
         <header className="container flex justify-between items-center px-6 py-5 xl:px-32">
             <Logo />
-
             <NavLinks />
-
             <div className="flex justify-center items-center">
                 <ThemeSwitcher />
-
                 {isAuthenticated && <FavoriteBtn />}
-
                 <AuthButtons
                     isAuthenticated={isAuthenticated}
                     handleOpenModal={handleOpenModal}
                     handleOnLogout={handleOnLogout}
                 />
-
                 <Burger handleOpenModal={handleOpenModal} />
             </div>
-
             <UniversalModal
                 isOpen={isModalOpen}
                 onRequestClose={handleCloseModal}

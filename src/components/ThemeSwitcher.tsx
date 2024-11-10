@@ -9,8 +9,7 @@ export function ThemeSwitcher() {
         <button
             type="button"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className={`p-2 rounded-full transition-colors duration-300
-                    ${theme === "dark" ? "text-primary" : "text-text"}`}
+            className="p-2 rounded-full transition-colors duration-300 text-text hover:text-primary"
             aria-label="Toggle theme">
             {theme === "dark" ? (
                 <svg

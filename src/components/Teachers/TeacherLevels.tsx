@@ -2,8 +2,9 @@
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectLevel, setLevelFilter } from "../../redux/filtersSlice";
-import { Teacher } from "../../redux/teachersSlice";
+import { setLevelFilter } from "../../redux/slices/filtersSlice";
+import { Teacher } from "../../redux/teachersTypes";
+import { selectLevel } from "../../redux/selectors";
 
 interface TeacherLevelsProps {
     teacher: Teacher;

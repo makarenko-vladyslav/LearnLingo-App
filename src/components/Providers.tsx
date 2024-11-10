@@ -5,7 +5,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import React, { ReactNode } from "react";
 import { store } from "../redux/store";
 import { ToastContainer } from "react-toastify";
-import AuthStatusChecker from "../services/AuthStatusChecker";
+
 import "react-toastify/dist/ReactToastify.css";
 
 interface ProvidersProps {
@@ -18,8 +18,6 @@ export function Providers({ children }: ProvidersProps) {
             <ThemeProvider
                 attribute="class"
                 defaultTheme="system">
-                <AuthStatusChecker />
-
                 {children}
 
                 <ToastContainer />

@@ -3,11 +3,12 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
-import { bookSchema } from "../../validation/authSchema";
+import { bookSchema } from "../../utils/authSchema";
 import InputField from "./InputField";
-import { Teacher } from "../../redux/teachersSlice";
+
 import Image from "next/image";
 import RadioButton from "./RadioButton";
+import { Teacher } from "../../redux/teachersTypes";
 
 interface BookingFormData {
     reason: string;

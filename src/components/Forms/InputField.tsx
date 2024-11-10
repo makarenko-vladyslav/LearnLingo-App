@@ -28,7 +28,7 @@ const InputField = <T extends FieldValues>({
     };
 
     return (
-        <div className="mb-[18px] last-input-mb-10">
+        <div className="mb-[18px] last-of-type:mb-2">
             <label
                 htmlFor={id}
                 className="block text-sm font-medium text-textGray relative">
@@ -37,11 +37,9 @@ const InputField = <T extends FieldValues>({
                     id={id}
                     placeholder={label}
                     {...register(id, { required: isRequired })}
-                    className="p-2 w-full border border-text10 rounded-xl leading-[137%] placeholder:text-textGray px-[18px] py-4 pr-10"
+                    className={`p-2 w-full border rounded-xl leading-[137%] placeholder:text-textGray px-[18px] py-4 pr-10
+                        ${error ? "border-2 border-red-500" : "border-text10"}`}
                 />
-
-                {error && <span className="text-red-500 text-sm ml-3 mt-1.5">{error}</span>}
-
                 {type === "password" && (
                     <button
                         type="button"
@@ -51,6 +49,8 @@ const InputField = <T extends FieldValues>({
                     </button>
                 )}
             </label>
+
+            {error && <p className="text-red-500 text-sm ml-3 mt-1.5 inline-block">{error}</p>}
         </div>
     );
 };

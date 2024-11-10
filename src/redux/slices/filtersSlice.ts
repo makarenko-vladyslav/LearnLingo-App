@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./store";
-import { Teacher } from "./teachersSlice";
+import { Teacher } from "../teachersTypes";
+import { fetchTeachersWithFilters } from "../actions/filtersActions";
 
 export interface FiltersState {
     language: string | null;
@@ -61,14 +61,12 @@ const filtersSlice = createSlice({
             state.level = null;
         },
     },
+    extraReducers: (builder) => {
+        builder.addCase(fetchTeachersWithFilters.rejected, (state, action) => {
+            console.error("Failed to fetch teachers with filters:", action.payload);
+        });
+    },
 });
-
-export const selectLevel = (state: RootState) => state.filters.level;
-export const selectFilters = (state: RootState) => state.filters;
-
-export const selectAvailableLanguages = (state: RootState) => state.filters.availableLanguages;
-export const selectAvailableLevels = (state: RootState) => state.filters.availableLevels;
-export const selectAvailablePriceOptions = (state: RootState) => state.filters.availablePriceOptions;
 
 export const { setLanguageFilter, setPriceFilter, setLevelFilter, setAvailableFilters, clearFilters } =
     filtersSlice.actions;

@@ -3,16 +3,18 @@
 import { FaRegHeart, FaHeart } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { selectFavoriteTeachers, Teacher, toggleFavoriteTeacher } from "../redux/teachersSlice";
-import { selectIsAuthenticated } from "../redux/authSlice";
 import { toast } from "react-toastify";
+import { AppDispatch } from "../redux/store";
+import { Teacher } from "../redux/teachersTypes";
+import { addFavoriteTeacher, removeFavoriteTeacher } from "../redux/actions/teachersActions";
+import { selectFavoriteTeachers, selectIsAuthenticated } from "../redux/selectors";
 
-interface HaveYouATeacherForMe {
+interface FavoriteBtnProps {
     teacher?: Teacher;
 }
 
-export default function FavoriteBtn({ teacher }: HaveYouATeacherForMe) {
-    const dispatch = useDispatch();
+export default function FavoriteBtn({ teacher }: FavoriteBtnProps) {
+    const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const favoriteTeachers = useSelector(selectFavoriteTeachers);
@@ -29,31 +31,33 @@ export default function FavoriteBtn({ teacher }: HaveYouATeacherForMe) {
         }
 
         if (teacher) {
-            dispatch(toggleFavoriteTeacher(teacher));
+            if (isFavorited) {
+                dispatch(removeFavoriteTeacher(teacher.id));
+            } else {
+                dispatch(addFavoriteTeacher(teacher));
+            }
         } else {
             router.push("/favorites");
         }
     };
 
     return (
-        <>
-            <button
-                className={`flex justify-center items-center gap-2 p-2 font-medium ${
-                    teacher && "absolute top-4 right-4"
-                }`}
-                onClick={handleClick}>
-                {teacher ? (
-                    isFavorited ? (
-                        <FaHeart className="text-buttonHover text-2xl hover:text-primary transition-colors duration-150" />
-                    ) : (
-                        <FaRegHeart className="text-text text-2xl hover:text-buttonHover transition-colors duration-150" />
-                    )
-                ) : favoriteTeachers.length > 0 ? (
+        <button
+            className={`flex justify-center items-center gap-2 p-2 font-medium ${
+                teacher ? "absolute top-4 right-4" : ""
+            }`}
+            onClick={handleClick}>
+            {teacher ? (
+                isFavorited ? (
                     <FaHeart className="text-buttonHover text-2xl hover:text-primary transition-colors duration-150" />
                 ) : (
                     <FaRegHeart className="text-text text-2xl hover:text-buttonHover transition-colors duration-150" />
-                )}
-            </button>
-        </>
+                )
+            ) : favoriteTeachers.length > 0 ? (
+                <FaHeart className="text-buttonHover text-2xl hover:text-primary transition-colors duration-150" />
+            ) : (
+                <FaRegHeart className="text-text text-2xl hover:text-buttonHover transition-colors duration-150" />
+            )}
+        </button>
     );
 }

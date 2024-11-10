@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Teacher } from "../../redux/teachersSlice";
+
 import FavoriteBtn from "../FavoriteBtn";
 import UniversalModal from "../UniversalModal";
 import TrialLessonForm from "../Forms/TrialLessonForm";
@@ -11,6 +11,7 @@ import TeacherInfo from "./TeacherInfo";
 import TeacherReviews from "./TeacherReviews";
 import TeacherLevels from "./TeacherLevels";
 import TrialLessonButton from "./TrialLessonButton";
+import { Teacher } from "../../redux/teachersTypes";
 
 interface TeacherCardProps {
     teacher: Teacher;

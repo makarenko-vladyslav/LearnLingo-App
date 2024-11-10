@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa6";
-import { Review } from "../../redux/teachersSlice";
+import { Review } from "../../redux/teachersTypes";
 
 interface TeacherReviewsProps {
     reviews: Review[];

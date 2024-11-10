@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsAuthenticated } from "../../redux/authSlice";
-import { handleLogout } from "../../services/authService";
+import type { AppDispatch } from "../../redux/store";
 import UniversalModal from "../UniversalModal";
 import NavLinks from "./NavLinks";
 import AuthButtons from "./AuthButtons";
+import { handleLogout } from "../../redux/actions/authActions";
+import { selectIsAuthenticated } from "../../redux/selectors";
 
 interface BurgerProps {
     handleOpenModal: (mode: "login" | "register") => void;
@@ -15,8 +15,7 @@ interface BurgerProps {
 
 const Burger: React.FC<BurgerProps> = ({ handleOpenModal }) => {
     const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-    const dispatch = useDispatch();
-    const router = useRouter();
+    const dispatch = useDispatch<AppDispatch>();
     const isAuthenticated = useSelector(selectIsAuthenticated);
 
     const handleToggleBurger = () => {
@@ -24,7 +23,7 @@ const Burger: React.FC<BurgerProps> = ({ handleOpenModal }) => {
     };
 
     const handleLogoutClick = () => {
-        handleLogout(dispatch, router);
+        dispatch(handleLogout());
         setIsBurgerOpen(false);
     };
 
@@ -41,7 +40,6 @@ const Burger: React.FC<BurgerProps> = ({ handleOpenModal }) => {
                     }`}
                 />
             </button>
-
             <UniversalModal
                 isOpen={isBurgerOpen}
                 onRequestClose={() => setIsBurgerOpen(false)}

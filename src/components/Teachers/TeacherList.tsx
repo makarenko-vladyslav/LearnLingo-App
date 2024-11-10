@@ -3,15 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import { selectAllTeachers } from "../../redux/teachersSlice";
-import { selectFavoriteTeachers } from "../../redux/teachersSlice";
-import { selectFilters } from "../../redux/filtersSlice";
-import { fetchTeachersWithFilters } from "../../services/filterService";
 
 import TeacherCard from "./TeacherCard";
 import Spinner from "../Spinner";
 import NoTeachersMessage from "./NoTeachersMessage";
 import LoadMoreButton from "../LoadMoreButton";
+import { fetchTeachersWithFilters } from "../../redux/actions/filtersActions";
+import { selectAllTeachers, selectFavoriteTeachers, selectFilters } from "../../redux/selectors";
 
 const ITEMS_PER_LOAD = 4;
 
@@ -25,17 +23,17 @@ const TeacherList: React.FC<TeacherListProps> = ({ favorites = false }) => {
     const filters = useSelector(selectFilters);
     const allTeachers = useSelector(selectAllTeachers);
     const favoriteTeachers = useSelector(selectFavoriteTeachers);
+    const [loading, setLoading] = useState(true);
 
     const [visibleTeachers, setVisibleTeachers] = useState(ITEMS_PER_LOAD);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
-    const [loading, setLoading] = useState(true);
 
     const teachers = favorites ? favoriteTeachers : allTeachers;
 
     useEffect(() => {
         const loadTeachers = async () => {
             setLoading(true);
-            await fetchTeachersWithFilters(filters, dispatch);
+            await dispatch(fetchTeachersWithFilters());
             setLoading(false);
         };
 

@@ -5,13 +5,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../redux/store";
-import { authSchema } from "../../validation/authSchema";
-import { handleAuth } from "../../services/authService";
+import { authSchema } from "../../utils/authSchema";
+import type { AppDispatch } from "../../redux/store";
 import InputField from "./InputField";
-import { selectAuthError, selectIsAuthenticated } from "../../redux/authSlice";
 import PasswordReset from "./PasswordReset";
 import Spinner from "../Spinner";
+import { handleAuth } from "../../redux/actions/authActions";
+import { selectAuthError, selectIsAuthenticated } from "../../redux/selectors";
 
 interface LoginAndRegisterFormProps {
     mode: "login" | "register";
@@ -44,15 +44,23 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode, onReq
 
     const onSubmit = async (data: FormData) => {
         setLoading(true);
-        await dispatch(handleAuth(mode, data, router));
+        await dispatch(
+            handleAuth({
+                mode,
+                email: data.email,
+                password: data.password,
+                name: data.name,
+            })
+        );
         setLoading(false);
     };
 
     useEffect(() => {
         if (isAuthenticated) {
             onRequestClose();
+            router.push("/teachers");
         }
-    }, [isAuthenticated, onRequestClose]);
+    }, [isAuthenticated, onRequestClose, router]);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -81,13 +89,20 @@ const LoginAndRegisterForm: React.FC<LoginAndRegisterFormProps> = ({ mode, onReq
                 error={errors.password?.message}
             />
 
-            {authError && <p className="text-red-600 text-xl text-center mb-8">{authError}</p>}
+            <p
+                className={`text-red-500 text-center mb-3 transition-opacity duration-500 ease-in-out opacity-0 scale-0 pointer-events-none ${
+                    authError && "opacity-100 scale-100"
+                }`}>
+                {authError}
+            </p>
 
             {mode === "login" && <PasswordReset email={email} />}
 
             <button
                 type="submit"
-                className="w-full py-4 bg-primary text-text text-[18px] font-medium rounded-xl hover:bg-buttonHover transition-colors duration-200"
+                className={`${
+                    mode === "register" && "mt-6"
+                } w-full py-4 bg-primary text-text text-[18px] font-medium rounded-xl hover:bg-buttonHover transition-colors duration-200`}
                 disabled={loading}>
                 {loading ? <Spinner /> : mode === "register" ? "Register" : "Log In"}
             </button>

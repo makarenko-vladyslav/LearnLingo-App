@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./store";
+import { handleAuth, handleLogout, resetPassword } from "../actions/authActions";
 
 interface AuthState {
     user: null | { email: string };
@@ -42,12 +42,25 @@ const authSlice = createSlice({
             state.loading = action.payload;
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(handleAuth.fulfilled, (state, action) => {
+                state.user = action.payload;
+                state.isAuthenticated = true;
+                state.error = null;
+            })
+            .addCase(handleAuth.rejected, (state, action) => {
+                state.error = action.payload || "An error occurred.";
+            })
+            .addCase(handleLogout.rejected, (state, action) => {
+                state.error = action.payload || "An error occurred.";
+            })
+            .addCase(resetPassword.rejected, (state, action) => {
+                state.error = action.payload || "An error occurred.";
+            });
+    },
 });
 
-export const selectAuthError = (state: RootState) => state.auth.error;
-export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
-export const selectAuthLoading = (state: RootState) => state.auth.loading;
-export const selectUser = (state: RootState) => state.auth.user;
-
 export const { setUser, clearUser, setAuthError, clearAuthError, setLoading } = authSlice.actions;
+
 export default authSlice.reducer;

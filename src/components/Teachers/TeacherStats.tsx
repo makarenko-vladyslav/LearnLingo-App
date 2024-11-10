@@ -1,7 +1,7 @@
 import React from "react";
 import { FiBookOpen } from "react-icons/fi";
 import { FaStar } from "react-icons/fa6";
-import { Teacher } from "../../redux/teachersSlice";
+import { Teacher } from "../../redux/teachersTypes";
 
 interface TeacherStatsProps {
     teacher: Teacher;

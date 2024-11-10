@@ -47,7 +47,6 @@ input {
 input:focus {
     outline: 2px solid var(--primary);
 }
-
 body {
     color: var(--text);
     background: var(--background);

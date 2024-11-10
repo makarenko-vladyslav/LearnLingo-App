@@ -1,5 +1,5 @@
 import React from "react";
-import { Teacher } from "../../redux/teachersSlice";
+import { Teacher } from "../../redux/teachersTypes";
 
 interface TeacherInfoProps {
     teacher: Teacher;
